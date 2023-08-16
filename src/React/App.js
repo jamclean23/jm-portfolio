@@ -4,21 +4,38 @@
 // ====== IMPORTS ======
 
 // React
-import React from 'react';
+import React, {useEffect, createContext} from 'react';
+import { HashRouter, Routes, Route } from 'react-router-dom';
 import { Component }  from './components/Component.js';
+
+
+// ====== GLOBAL VARS ======
+
+const AppContext = createContext();
 
 
 // ====== FUNCTIONS ======
 
-// Main app function 
+
+
+
+// ====== COMPONENT ======
+
 function App () {
+
+    // RENDER
+
     return (
-        <div>
-            <h1>Content goes here</h1>
-            <Component />
-        </div>
+        <AppContext.Provider>
+            <HashRouter>
+                <Routes>
+                    <Route path='/' element={<Component/>}/>
+                </Routes>
+            </HashRouter>
+        </AppContext.Provider>
     );
 }
+
 
 // ====== EXPORTS ======
 

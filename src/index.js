@@ -18,4 +18,4 @@ import { App } from './React/App.js';
 
 const reactRoot = createRoot(document.querySelector('#root'));
 
-reactRoot.render(<App />);
+reactRoot.render(<App/>);
