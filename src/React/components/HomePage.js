@@ -1,18 +1,18 @@
-// Component Example
+// Home page component
 
 // ====== IMPORTS ======
 import React from 'react';
 
 // ====== DEFINITION ======
 
-function Component () {
+function HomePage () {
     return (
-    <p>I'm a Component!</p>    
+    <p>Home</p>    
     );
 }
 
 // ====== EXPORTS ======
 
 export {
-    Component
+    HomePage
 }

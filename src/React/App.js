@@ -6,7 +6,7 @@
 // React
 import React, {useEffect, createContext} from 'react';
 import { HashRouter, Routes, Route } from 'react-router-dom';
-import { Component }  from './components/Component.js';
+import { HomePage }  from './components/HomePage.js';
 
 
 // ====== GLOBAL VARS ======
@@ -29,7 +29,7 @@ function App () {
         <AppContext.Provider>
             <HashRouter>
                 <Routes>
-                    <Route path='/' element={<Component/>}/>
+                    <Route path='/' element={<HomePage/>}/>
                 </Routes>
             </HashRouter>
         </AppContext.Provider>
