@@ -1,13 +1,23 @@
 // Home page component
 
 // ====== IMPORTS ======
+
+// React
 import React from 'react';
+
+// Css
+import './HomePage.css';
+
+// Components
+import Header from '../Header/Header';
 
 // ====== DEFINITION ======
 
 function HomePage () {
     return (
-    <p>Home</p>    
+    <div className='HomePage'>
+        <Header />
+    </div>    
     );
 }
 

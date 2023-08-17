@@ -6,8 +6,7 @@
 // React
 import React, {useEffect, createContext} from 'react';
 import { HashRouter, Routes, Route } from 'react-router-dom';
-import { HomePage }  from './components/HomePage.js';
-
+import { HomePage } from './components/HomePage/HomePage.js';
 
 // ====== GLOBAL VARS ======
 
