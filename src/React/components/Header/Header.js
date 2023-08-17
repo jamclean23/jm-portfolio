@@ -16,7 +16,14 @@ function Header () {
     
     return (
         <header className="Header">
-            <span>jmdev</span>
+            <span className="jmdev">jmdev</span>
+            <nav className="navBar expanded">
+                <a className="navLink"><span className="navLinkSlashes">// </span><span className="navLinkText">Projects</span></a>
+                <a className="navLink"><span className="navLinkSlashes">// </span><span className="navLinkText">About</span></a>
+                <a className="navLink"><span className="navLinkSlashes">// </span><span className="navLinkText">Contact</span></a>
+                <a className="navLink"><span className="navLinkSlashes">// </span><span className="navLinkText">Resumé</span></a>
+            </nav>
+            <button className="hamburger">☰</button>
 
         </header>
     );

@@ -1,0 +1,32 @@
+/* Global stylesheet */
+
+@font-face {
+    font-family: 'Roboto';
+    src: url('./assets/fonts/roboto-slab.ttf');
+}
+
+@font-face {
+    font-family: 'FiraCode';
+    src: url('./assets/fonts/FiraCode.ttf');
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    color: var(--font-color);
+    font-family: var(--default-font);
+    background-color: var(--main-bg-color);
+}
+
+:root {
+    /* Color Variables */
+    --header-color: #333f4c;
+    --font-color: rgb(255, 255, 255);
+    --main-bg-color: #1F1F2D;
+    --text-hover-color: yellow;
+    --btn-click-color: white;
+
+    /* Fonts */
+    --default-font: 'FiraCode';
+}

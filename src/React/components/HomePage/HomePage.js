@@ -14,6 +14,9 @@ import Header from '../Header/Header';
 // ====== DEFINITION ======
 
 function HomePage () {
+    
+    // RENDER
+
     return (
     <div className='HomePage'>
         <Header />

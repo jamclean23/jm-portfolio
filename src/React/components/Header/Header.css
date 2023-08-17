@@ -1,1 +1,144 @@
 /* Stylesheet for Header.js */
+
+.Header {
+    background-color: var(--header-color);
+    min-height: 3rem;
+    padding-left: 1rem;
+    padding-right: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.navBar {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 2rem;
+}
+
+.navBar.hidden {
+    display: none;
+}
+
+.navBar.expanded {
+    animation-name: expanding;
+    animation-timing-function: ease-in-out;
+    animation-duration: .5s;
+    animation-fill-mode: forwards;
+    animation-iteration-count: 1;
+    transform-origin: right;
+}
+
+@keyframes expanding {
+    0% {
+        opacity: 0%;
+        transform: scaleX(0);
+    }
+
+    80% {
+        transform: scaleX(1.05);
+    }
+
+    100% {
+        opacity: 100%;
+        transform: scaleX(1);
+    }
+}
+
+.navBar.retracted {
+    animation-name: retracting;
+    animation-timing-function: ease-in-out;
+    animation-duration: .5s;
+    animation-fill-mode: forwards;
+    animation-iteration-count: 1;
+    transform-origin: right;
+}
+
+@keyframes retracting {
+    0% {
+        opacity: 100%;
+        transform: scaleX(1);
+    }
+
+    30% {
+        transform: scaleX(1.05);
+    }
+
+    100% {
+        opacity: 0%;
+        transform: scaleX(0);
+    }
+}
+
+.navLink {
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.navLink:hover {
+    color: var(--text-hover-color);
+    transition: color .5s;
+}
+
+.navLinkText {
+    border-bottom: 1px solid transparent;
+}
+
+.navLink:hover .navLinkText {
+    border-bottom: 1px solid var(--text-hover-color);
+    transition: border-bottom .5s;
+}
+
+.hamburger {
+    color: var(--font-color);
+    border: none;
+    background-color: transparent;
+    font-size: 1.5rem;
+    border-radius: 4px;
+    animation-name: hamburger-fade-in;
+    animation-duration: .4s;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
+    animation-iteration-count: 1;
+}
+
+@keyframes hamburger-fade-in {
+    0% {
+        opacity: 0%;
+    }
+
+    100% {
+        opacity: 100%;
+    }
+}
+
+.hamburger.fadeOut {
+    animation-name: hamburger-fade-out;
+    animation-duration: .4s;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
+    animation-iteration-count: 1;
+}
+
+@keyframes hamburger-fade-out {
+    0% {
+        opacity: 100%;
+    }
+
+    100% {
+        opacity: 0%;
+    }
+}
+
+.hamburger:active {
+    background-color: var(--btn-click-color);
+    color: var(--header-color);
+}
+
+.hamburger.hidden {
+    display: none;
+}
+
+.jmdev {
+    font-size: 1.3rem;
+}
