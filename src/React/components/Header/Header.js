@@ -37,19 +37,18 @@ function Header () {
 
     function handleWindowClick (event) {
         const hamburgerBtn = document.querySelector('.hamburger');
-
-        console.log('clicked');
+        const navLink = document.querySelector('.navLink');
 
         if (event.srcElement === hamburgerBtn && !(hamburgerBtn.classList.contains('menuShown'))) {
-            console.log('opening');
             showHamburger();
         } else if (event.srcElement === hamburgerBtn && (hamburgerBtn.classList.contains('menuShown'))) {
-            console.log('closing');
             hideHamburger();
         }
 
-        if ((hamburgerBtn.classList.contains('menuShown') && !(hamburgerBtn.contains(event.srcElement)))) {
-            console.log(event.srcElement);
+        if (
+            hamburgerBtn.classList.contains('menuShown') && (!(hamburgerBtn.contains(event.srcElement))) || 
+            event.srcElement.parentElement && event.srcElement.parentElement.classList.contains('navLink')
+            ) {
             hideHamburger();
         }
     }
