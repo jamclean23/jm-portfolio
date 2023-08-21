@@ -45,8 +45,7 @@ function handleHamburgerAnimationEnd (event) {
             nav.classList.remove('hidden');
             nav.classList.remove('retracted');
             nav.classList.add('expanded');
-
-
+            break;
     }
 }
 
@@ -108,4 +107,4 @@ function handleResize () {
 
 const reactRoot = createRoot(document.querySelector('#root'));
 
-reactRoot.render(<App/>);
+reactRoot.render(<App />);

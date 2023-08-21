@@ -1,11 +1,6 @@
 /* Global stylesheet */
 
 @font-face {
-    font-family: 'Roboto';
-    src: url('./assets/fonts/roboto-slab.ttf');
-}
-
-@font-face {
     font-family: 'FiraCode';
     src: url('./assets/fonts/FiraCode.ttf');
 }

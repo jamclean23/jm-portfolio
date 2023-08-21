@@ -81,6 +81,7 @@
 }
 
 .navLinkText {
+    margin-left: .5rem;
     border-bottom: 1px solid transparent;
 }
 
@@ -94,43 +95,42 @@
     border: none;
     background-color: transparent;
     font-size: 1.5rem;
-    border-radius: 4px;
+    transition: color .5s;
+    transition: background-color .5s;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    position: relative;
     animation-name: hamburger-fade-in;
-    animation-duration: .4s;
-    animation-timing-function: ease-in-out;
+    animation-duration: .2s;
     animation-fill-mode: forwards;
+    animation-iteration-count: 1;
+}
+
+.hamburger.fadeOut {
+    animation-name: hamburger-fade-out;
+    animation-fill-mode: forwards;
+    animation-duration: .2s;
     animation-iteration-count: 1;
 }
 
 @keyframes hamburger-fade-in {
     0% {
         opacity: 0%;
-    }
-
-    100% {
+    } 100% {
         opacity: 100%;
     }
-}
-
-.hamburger.fadeOut {
-    animation-name: hamburger-fade-out;
-    animation-duration: .4s;
-    animation-timing-function: ease-in-out;
-    animation-fill-mode: forwards;
-    animation-iteration-count: 1;
 }
 
 @keyframes hamburger-fade-out {
     0% {
         opacity: 100%;
     }
-
     100% {
         opacity: 0%;
     }
 }
 
-.hamburger:active {
+.hamburger.menuShown {
     background-color: var(--btn-click-color);
     color: var(--header-color);
 }

@@ -3,27 +3,97 @@
 // ====== IMPORTS ======
 
 // React
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 // Css
 import './Header.css';
+
+// Components
+import HamburgerMenu from "./HamburgerMenu/HamburgerMenu";
 
 
 // ====== COMPONENT ======
 
 function Header () {
+    
+    // VARIABLES
+    
+    const [shouldShowHamburgerMenu, setShouldShowHamburgerMenu] = useState(false);
+
+
+    // LISTENERS
+    
+    useEffect(() => {
+        window.addEventListener('click', handleWindowClick);
+        window.addEventListener('transitionend', transitionEnd);
+
+        return () => {
+            window.removeEventListener('click', handleWindowClick);
+            window.removeEventListener('transitionend', transitionEnd);
+        }
+    }, []);
+
+    // FUNCTIONS
+
+    function handleWindowClick (event) {
+        const hamburgerBtn = document.querySelector('.hamburger');
+
+        console.log('clicked');
+
+        if (event.srcElement === hamburgerBtn && !(hamburgerBtn.classList.contains('menuShown'))) {
+            console.log('opening');
+            showHamburger();
+        } else if (event.srcElement === hamburgerBtn && (hamburgerBtn.classList.contains('menuShown'))) {
+            console.log('closing');
+            hideHamburger();
+        }
+
+        if ((hamburgerBtn.classList.contains('menuShown') && !(hamburgerBtn.contains(event.srcElement)))) {
+            console.log(event.srcElement);
+            hideHamburger();
+        }
+    }
+
+    function transitionEnd (event) {
+        
+        // Hides hamburger menu after transition
+        if (event.srcElement === document.querySelector('.hamburger') && !(event.srcElement.classList.contains('menuShown'))) {
+            setShouldShowHamburgerMenu(false);
+        }
+    }
+
+    function showHamburger () {
+        const hamburgerBtn = document.querySelector('.hamburger');
+
+        setShouldShowHamburgerMenu(true);
+        hamburgerBtn.classList.add('menuShown');
+    }
+
+    function hideHamburger () {
+        const hamburgerBtn = document.querySelector('.hamburger');
+
+        hamburgerBtn.classList.remove('menuShown');
+        document.querySelector('.HamburgerMenu').classList.remove('fadeIn');
+    }
+
     // RENDER
     
     return (
         <header className="Header">
             <span className="jmdev">jmdev</span>
             <nav className="navBar expanded">
-                <a className="navLink"><span className="navLinkSlashes">// </span><span className="navLinkText">Projects</span></a>
-                <a className="navLink"><span className="navLinkSlashes">// </span><span className="navLinkText">About</span></a>
-                <a className="navLink"><span className="navLinkSlashes">// </span><span className="navLinkText">Contact</span></a>
-                <a className="navLink"><span className="navLinkSlashes">// </span><span className="navLinkText">Resumé</span></a>
+                <a className="navLink"><span className="navLinkSlashes">//</span><span className="navLinkText">Projects</span></a>
+                <a className="navLink"><span className="navLinkSlashes">//</span><span className="navLinkText">About</span></a>
+                <a className="navLink"><span className="navLinkSlashes">//</span><span className="navLinkText">Contact</span></a>
+                <a className="navLink"><span className="navLinkSlashes">//</span><span className="navLinkText">Resumé</span></a>
             </nav>
-            <button className="hamburger">☰</button>
+            <button className="hamburger">
+                ☰
+                {shouldShowHamburgerMenu
+                    ? <HamburgerMenu/>
+                    : ''
+                }
+            </button>
 
         </header>
     );
