@@ -19,7 +19,6 @@
     animation-duration: .5s;
     animation-fill-mode: forwards;
     animation-iteration-count: 1;
-    /* pointer-events: none; */
 }
 
 .HamburgerMenu .navLink {
@@ -35,7 +34,7 @@
     }
 }
 
-.HamburgerMenu.fadeIn {
+.hamburger.menuShown > .HamburgerMenu {
     animation-name: hamburger-menu-fade-in;
     animation-direction: forwards;
     animation-iteration-count: 1;

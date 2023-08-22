@@ -1,0 +1,1 @@
+- disable pointer-events while animating hamburger menu
