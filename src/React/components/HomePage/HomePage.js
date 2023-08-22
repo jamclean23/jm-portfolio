@@ -3,7 +3,7 @@
 // ====== IMPORTS ======
 
 // React
-import React from 'react';
+import React, { useEffect } from 'react';
 
 // Css
 import './HomePage.css';
@@ -15,11 +15,20 @@ import Header from '../Header/Header';
 
 function HomePage () {
     
+    // FUNCTIONS
+
+
+    // LISTENERS
+
+
     // RENDER
 
     return (
     <div className='HomePage'>
         <Header />
+        <main>
+            content
+        </main>
     </div>    
     );
 }

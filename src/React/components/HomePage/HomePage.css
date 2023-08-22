@@ -1,1 +1,4 @@
 /* Stylesheet for HomePage.js */
+main {
+    min-height: 100rem;
+}

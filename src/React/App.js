@@ -21,15 +21,55 @@ function App (props) {
 
     const [hamburgerShown, setHamburgerShown] = useState(false);
     const appClickEvent = useRef();
+    const lastScrollValue = useRef(0);
+    const [scrollDirection, setScrollDirection] = useState();
 
     // LISTENERS
 
-    window.addEventListener('animationend', animationEnd);
+    useEffect(() => {
+        window.addEventListener('animationend', handleAnimationEnd);
+        window.addEventListener('scroll', handleScroll);
+    }, []);
+    
+    useEffect(() => {
+        if (scrollDirection) {
+            // console.log(scrollDirection);
+        }
+        }, [scrollDirection]);
 
 
     // FUNCTIONS
 
-    function animationEnd (event) {
+    function handleScroll (event) {
+        if (window.scrollY > lastScrollValue.current) {
+            handleScrollDown();
+            setScrollDirection('down');
+        } else if (window.scrollY < lastScrollValue.current) {
+            handleScrollUp();
+            setScrollDirection('up');
+        }
+        lastScrollValue.current = window.scrollY;
+    }
+
+    function handleScrollUp () {
+        showHeader();
+    }
+
+    function showHeader () {
+        const Header = document.querySelector('.Header');
+        Header.classList.remove('hidden'); 
+    }
+
+    function handleScrollDown () {
+        hideHeader();
+    }
+
+    function hideHeader () {
+        const Header = document.querySelector('.Header');
+        Header.classList.add('hidden'); 
+    }
+
+    function handleAnimationEnd (event) {
         switch (event.animationName) {
             case 'hamburger-fade-out':
                 setHamburgerShown(false);
@@ -44,7 +84,7 @@ function App (props) {
     // RENDER
 
     return (
-        <main className='App'>
+        <div className='App'>
             <AppContext.Provider value={{
                 appClickEvent
                 }}>
@@ -54,7 +94,7 @@ function App (props) {
                     </Routes>
                 </HashRouter>
             </AppContext.Provider>
-        </main>
+        </div>
     );
 }
 

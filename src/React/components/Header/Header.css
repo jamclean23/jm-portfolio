@@ -8,6 +8,43 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    position: sticky;
+    top: 0;
+    transition: background-color 1s;
+}
+
+.Header.hidden {
+    background-color: transparent;
+}
+
+.Header :not(.jmdev) {
+    transition: opacity 1s;
+}
+
+.Header.hidden :not(.jmdev, .hamburger >) {
+    opacity: 0;
+    transition: opacity 1s;
+    pointer-events: none;
+}
+
+.Header.hidden .hamburger {
+    border-radius: 4px;
+}
+
+.jmdev {
+    background-color: var(--header-color);
+    border-radius: 30px;
+    padding: .3rem .7rem;
+    transition: color .5s;
+    font-size: inherit;
+    font-family: inherit;
+    color: inherit;
+    border: none;
+}
+
+.jmdev:hover {
+    color: var(--text-hover-color);
+    transition: color .5s;
 }
 
 .navBar {
@@ -93,12 +130,11 @@
 .hamburger {
     color: var(--font-color);
     border: none;
-    background-color: transparent;
+    background-color: var(--header-color);
+    transition: background-color .5s !important;
     font-size: 1.5rem;
     transition: color .5s;
-    transition: background-color .5s;
-    border-top-left-radius: 4px;
-    border-top-right-radius: 4px;
+    border-radius: 4px;
     position: relative;
     animation-name: hamburger-fade-in;
     animation-duration: .2s;
@@ -133,6 +169,9 @@
 .hamburger.menuShown {
     background-color: var(--btn-click-color);
     color: var(--header-color);
+    transition: background-color .5s;
+    border-bottom-left-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
 }
 
 .hamburger.hidden {

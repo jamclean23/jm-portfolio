@@ -32,7 +32,6 @@ function handleAnimationEnd (event) {
 }
 
 function handleAnimationStart (event) {
-    console.log(event);
     event.srcElement.classList.add('animating');
     handleNavBarAnimationStart(event);
 }

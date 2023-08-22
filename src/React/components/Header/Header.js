@@ -79,7 +79,7 @@ function Header () {
     
     return (
         <header className="Header">
-            <span className="jmdev">jmdev</span>
+            <button className="jmdev">jm_dev</button>
             <nav className="navBar expanded">
                 <a className="navLink"><span className="navLinkSlashes">//</span><span className="navLinkText">Projects</span></a>
                 <a className="navLink"><span className="navLinkSlashes">//</span><span className="navLinkText">About</span></a>
