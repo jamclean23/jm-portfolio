@@ -1,0 +1,43 @@
+/* Stylesheet for Landing.js */
+
+.Landing {
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-columns: 1fr 1fr 1fr;
+    min-height: 80vh;
+}
+
+.Landing .imgWrapper {
+    min-width: 8rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 6rem;
+}
+
+.Landing .portrait {
+    max-width: 100%;
+    border-radius: 15%;
+    box-shadow: 0 0 4px var(--header-color);
+}
+
+.Landing aside {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    padding-inline: 2rem;
+}
+
+@media (max-width: 600px) {
+    .Landing {
+        grid-auto-flow: row;
+        grid-template-rows: 1fr 20rem 1fr;
+        grid-template-columns: 1fr;
+    }
+
+    .Landing .portrait {
+        max-height: 20vh;
+        max-width: auto;
+    }
+}

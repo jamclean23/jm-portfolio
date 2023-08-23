@@ -10,6 +10,10 @@ import './HomePage.css';
 
 // Components
 import Header from '../Header/Header';
+import Landing from './Landing/Landing.js';
+
+// Images
+import portrait from '../../../assets/images/portrait.jpg';
 
 // ====== DEFINITION ======
 
@@ -27,7 +31,7 @@ function HomePage () {
     <div className='HomePage'>
         <Header />
         <main>
-            content
+            <Landing />
         </main>
     </div>    
     );
