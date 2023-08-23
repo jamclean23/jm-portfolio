@@ -52,7 +52,7 @@ function Header () {
 
     function generateSpinners (counter = 0) {
         if (jmdevHovered.current) {
-            if (!(counter % 30)) {
+            if (!(counter % Math.floor((Math.random()*20)+10))) {
                 addSpinner();
             }
             counter++;

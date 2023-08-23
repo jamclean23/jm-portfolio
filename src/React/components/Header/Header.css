@@ -21,10 +21,8 @@
     transition: opacity 1s;
 }
 
-.Header.hidden :not(.jmdev, .hamburger >) {
+.Header.hidden .navBar.expanded > * {
     opacity: 0;
-    transition: opacity 1s;
-    pointer-events: none;
 }
 
 .Header.hidden .hamburger {
@@ -187,18 +185,18 @@
     position: absolute;
     font-size: .5rem;
     pointer-events: none;
-    top: 50%;
-    left: 50%;
+    top: 65%;
+    left: 42%;
     transform: translate(-50%, -50%);
     transition: top 3s, left 3s, opacity 1.5s !important;
 }
 
 @keyframes spin {
     from {
-        transform: rotate(0deg);
+        transform: rotate(90deg);
     }
     to {
-        transform: rotate(360deg);
+        transform: rotate(450deg);
     }
 }
 
