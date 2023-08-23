@@ -30,12 +30,6 @@ function App (props) {
         window.addEventListener('animationend', handleAnimationEnd);
         window.addEventListener('scroll', handleScroll);
     }, []);
-    
-    useEffect(() => {
-        if (scrollDirection) {
-            // console.log(scrollDirection);
-        }
-        }, [scrollDirection]);
 
 
     // FUNCTIONS
