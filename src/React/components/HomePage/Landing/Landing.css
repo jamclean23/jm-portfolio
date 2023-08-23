@@ -4,7 +4,7 @@
     display: grid;
     grid-auto-flow: column;
     grid-template-columns: 1fr 1fr 1fr;
-    min-height: 80vh;
+    min-height: 92vh;
 }
 
 .Landing .imgWrapper {
@@ -13,6 +13,7 @@
     justify-content: center;
     align-items: center;
     padding: 6rem;
+    position: relative;
 }
 
 .Landing .portrait {
@@ -29,6 +30,42 @@
     padding-inline: 2rem;
 }
 
+.iconsLayer {
+    position: absolute;
+    width: 100%;
+    aspect-ratio: 1/1;
+    pointer-events: none;
+    user-select: none;
+    animation: 45s linear infinite rotate-layer;
+    /* opacity: 0; */
+    transition: opacity 2s;
+}
+
+@keyframes rotate-layer {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.iconsLayer .orbitIcon {
+    width: 2rem;
+    animation: 45s linear infinite rotate-icons;
+    position: absolute;
+    opacity: .7;
+}
+
+@keyframes rotate-icons {
+    from {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+    to {
+        transform: translate(-50%, -50%) rotate(-360deg);
+    }
+}
+
 @media (max-width: 600px) {
     .Landing {
         grid-auto-flow: row;
@@ -37,7 +74,12 @@
     }
 
     .Landing .portrait {
-        max-height: 20vh;
+        max-height: 30vh;
         max-width: auto;
+    }
+
+    .iconsLayer {
+        height: 80%;
+        width: auto;
     }
 }
