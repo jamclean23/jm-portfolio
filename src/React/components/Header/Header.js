@@ -52,7 +52,7 @@ function Header () {
 
     function generateSpinners (counter = 0) {
         if (jmdevHovered.current) {
-            if (!(counter % Math.floor((Math.random()*20)+10))) {
+            if (!(counter % Math.floor((Math.random()*10)+5))) {
                 addSpinner();
             }
             counter++;
@@ -69,14 +69,12 @@ function Header () {
                 let spinner;
 
                 spinnersDom.forEach((spinnerDom) => {
-                    console.log(spinnerDom.getAttribute('data-id'));
                     if (spinnerDom.getAttribute('data-id') === id) {
                         spinner = spinnerDom;
                     }
                 });
 
                 if (spinner) {
-                    console.log('assigning spinner');
                     spinner.style.top = (Math.random() * 100) + 40 + 'px';
                     spinner.style.left = (Math.random() * 400) - 200 + 'px';
                     spinner.style.opacity = 0;
@@ -103,8 +101,6 @@ function Header () {
         spinnersRef.current.forEach((spinner) => {
             if (!(spinner.props['data-id'] === id)) {
                 newSpinnersArray.push(spinner);
-            } else {
-                console.log('Deleting spinner: ', id);
             }
         });
 

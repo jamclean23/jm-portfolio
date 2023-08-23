@@ -108,21 +108,22 @@
 .navLink {
     display: flex;
     flex-wrap: nowrap;
+    transition: color 1s !important;
 }
 
 .navLink:hover {
     color: var(--text-hover-color);
-    transition: color .5s;
+    transition: color 1s;
 }
 
-.navLinkText {
+.navLink .navLinkText {
     margin-left: .5rem;
     border-bottom: 1px solid transparent;
 }
 
 .navLink:hover .navLinkText {
     border-bottom: 1px solid var(--text-hover-color);
-    transition: border-bottom .5s;
+    transition: border-color .5s;
 }
 
 .hamburger {
@@ -187,12 +188,13 @@
     pointer-events: none;
     top: 65%;
     left: 42%;
-    transition: top 3s, left 3s, opacity 1.5s !important;
+    transition: top 3s, left 3s, opacity .75s !important;
+    transition-timing-function: ease-in;
 }
 
 @keyframes spin {
     from {
-        transform: rotate(90deg);
+        transform: rotate(90deg) scaleX(400%);
     }
     to {
         transform: rotate(450deg);
