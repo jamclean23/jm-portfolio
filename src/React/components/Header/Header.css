@@ -187,7 +187,6 @@
     pointer-events: none;
     top: 65%;
     left: 42%;
-    transform: translate(-50%, -50%);
     transition: top 3s, left 3s, opacity 1.5s !important;
 }
 

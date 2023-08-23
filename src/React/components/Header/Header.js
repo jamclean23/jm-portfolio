@@ -56,29 +56,43 @@ function Header () {
                 addSpinner();
             }
             counter++;
-            updateSpinners();
             requestAnimationFrame(generateSpinners.bind(this, counter));
         }
     }
+    
+    function assignSpinnerValsAfterDelay (id, delay = 20) {
+        return new Promise((resolve) => {
+            setTimeout(timerDone.bind(this, id), delay);
 
-    function updateSpinners () {
-        const spinnersDom = document.querySelectorAll('.spinner');
+            function timerDone (id) { 
+                const spinnersDom = document.querySelectorAll('.spinner');
+                let spinner;
 
-        spinnersDom.forEach((spinner) => {
-            if (!(spinner.style.top)) {
-                spinner.style.top = (Math.random() * 100) + 40 + 'px';
+                spinnersDom.forEach((spinnerDom) => {
+                    console.log(spinnerDom.getAttribute('data-id'));
+                    if (spinnerDom.getAttribute('data-id') === id) {
+                        spinner = spinnerDom;
+                    }
+                });
+
+                if (spinner) {
+                    console.log('assigning spinner');
+                    spinner.style.top = (Math.random() * 100) + 40 + 'px';
+                    spinner.style.left = (Math.random() * 400) - 200 + 'px';
+                    spinner.style.opacity = 0;
+                }
+                resolve();
             }
+        });
+    }
 
-            if (!(spinner.style.left)) {
-                spinner.style.left = (Math.random() * 400) - 200 + 'px';
-            }
+    function removeSpinnerAfterDelay (id, delay = 3000) {
+        return new Promise((resolve) => {
+            setTimeout(timerDone.bind(this, id), delay);
 
-            if (!(spinner.style.opacity)) {
-                spinner.style.opacity = 0;
-            }
-
-            if (getComputedStyle(spinner).opacity === '0') {
-                removeSpinnerById(spinner.getAttribute('data-id'));
+            function timerDone (id) {
+                removeSpinnerById(id);
+                resolve();
             }
         });
     }
@@ -89,13 +103,15 @@ function Header () {
         spinnersRef.current.forEach((spinner) => {
             if (!(spinner.props['data-id'] === id)) {
                 newSpinnersArray.push(spinner);
+            } else {
+                console.log('Deleting spinner: ', id);
             }
         });
 
         setSpinners([...newSpinnersArray]);
     }
 
-    function addSpinner () {
+    async function addSpinner () {
         const spinnerKey = uniqid();
         setSpinners((oldArray) => [...oldArray, <div 
                                                     style={{
@@ -105,6 +121,8 @@ function Header () {
                                                     data-id={spinnerKey}
                                                     key={spinnerKey}
                                                 >|</div>]);
+        await assignSpinnerValsAfterDelay(spinnerKey);
+        await removeSpinnerAfterDelay(spinnerKey);
     }
 
     function handleJmdevHover (event) {
