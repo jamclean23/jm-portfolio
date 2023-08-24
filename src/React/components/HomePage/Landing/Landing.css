@@ -7,6 +7,13 @@
     min-height: var(--landing-height);
 }
 
+.Landing .name {
+    font-size: 3rem;
+    font-weight: bold;
+    letter-spacing: .3rem;
+    text-align: center;
+}
+
 .Landing .imgWrapper {
     min-width: 8rem;
     display: flex;
@@ -31,6 +38,19 @@
     justify-content: center;
     align-items: center;
     padding-inline: 2rem;
+}
+
+.Landing .typeCursor {
+    animation: .75s cubic-bezier(0.075, 0.82, 0.165, 1) alternate infinite blink-cursor;
+}
+
+@keyframes blink-cursor {
+    0% {
+        opacity: 0%;
+    }
+    100% {
+        opacity: 100%;
+    }
 }
 
 .iconsLayer {
@@ -69,7 +89,7 @@
     }
 }
 
-@media (max-width: 800px) {
+@media (max-width: 950px) {
     .Landing {
         grid-auto-flow: row;
         grid-template-rows: 1fr 20rem 1fr;

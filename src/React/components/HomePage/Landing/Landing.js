@@ -28,6 +28,9 @@ function Landing () {
     // VARIABLES
     
     const [orbitIconOffsets, setOrbitIconsOffsets] = useState([]);
+    const [nameContents, setNameContents] = useState('');
+
+    const name = 'Jesse McLean'
 
 
     // LISTENERS
@@ -122,8 +125,11 @@ function Landing () {
     // RENDER
     return (
         <section onLoad={handleLandingLoad} className="Landing">
-            <aside className="welcomeText">
-                Hi, I'm Jesse McLean.
+            <aside className="nameAside">
+                <p className="name">
+                    {nameContents}
+                    <span className="typeCursor">|</span>
+                </p>
             </aside>
             <div className="imgWrapper">
                 <img className='portrait' onLoad={handlePortraitLoad} src={portrait} alt='A picture of Jesse McLean in thought'/>
@@ -212,7 +218,7 @@ function Landing () {
                 </div>
             </div>
             <aside className="aboutText">
-                I'm a web developer with a passion for learning and exploration.
+                A web developer with a passion for learning and exploration.
             </aside>
         </section>
     );
