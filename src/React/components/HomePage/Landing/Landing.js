@@ -88,15 +88,31 @@ function Landing () {
                     console.log('Setting opacity');
                     const element = document.querySelector('.' + cssClass);
                     element.style.opacity = newOpacityPercent;
+                    resolve();
                 }, delay)
             });
         })()
 
     }   
 
+    async function addClassAfterDelay (classOfElement, newClass, delay = 500) {
+
+        await (() => {
+            return new Promise((resolve) => {
+                setTimeout(() => {
+                    const element = document.querySelector('.' + classOfElement);
+                    element.classList.add(newClass);
+                    resolve()
+                }, delay);
+            });
+        })()
+
+    }
+
     function handleIconsLayerLoad () {
         initIcons();
         changeOpacityAfterDelay('iconsLayer', '100%', 1000);
+        addClassAfterDelay('typeCursor', 'animating', 1000);
     }
 
     function handleWindowResize () {

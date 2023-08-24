@@ -41,7 +41,12 @@
 }
 
 .Landing .typeCursor {
-    animation: .75s cubic-bezier(0.075, 0.82, 0.165, 1) alternate infinite blink-cursor;
+    opacity: 0;
+}
+
+.Landing .typeCursor.animating {
+    opacity: 0;
+    animation: .75s ease-out alternate infinite blink-cursor;
 }
 
 @keyframes blink-cursor {
