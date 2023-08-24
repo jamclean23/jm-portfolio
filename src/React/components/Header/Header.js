@@ -50,6 +50,12 @@ function Header () {
 
     // FUNCTIONS
 
+    function reportHeightToCss () {
+        const root = document.querySelector(':root');
+        const Header = document.querySelector('.Header');
+        root.style.setProperty('--header-height', getComputedStyle(Header).height.split('px'));
+    }
+
     function generateSpinners (counter = 0) {
         if (jmdevHovered.current) {
             if (!(counter % Math.floor((Math.random()*10)+5))) {
@@ -169,10 +175,15 @@ function Header () {
         document.querySelector('.HamburgerMenu').classList.remove('fadeIn');
     }
 
+    function handleHeaderLoad () {
+        reportHeightToCss();
+        window.addEventListener('resize', reportHeightToCss);
+    }
+
     // RENDER
     
     return (
-        <header className="Header">
+        <header onLoad={handleHeaderLoad} className="Header">
             <button className="jmdev">
                 jm_dev
                 {spinners}

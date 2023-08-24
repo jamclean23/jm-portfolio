@@ -1,5 +1,9 @@
 /* Global stylesheet */
 
+p {
+    margin: 0;
+}
+
 @font-face {
     font-family: 'FiraCode';
     src: url('./assets/fonts/FiraCode.ttf');
@@ -31,5 +35,5 @@ body {
     --default-font: 'FiraCode';
 
     /* Dimensions */
-    --landing-height: 92vh;
+    --header-height: 8vh;
 }

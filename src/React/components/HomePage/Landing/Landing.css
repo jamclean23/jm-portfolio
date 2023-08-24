@@ -4,7 +4,7 @@
     display: grid;
     grid-auto-flow: column;
     grid-template-columns: 1fr 1fr 1fr;
-    min-height: var(--landing-height);
+    min-height: calc(100vh - var(--header-height));
 }
 
 .Landing .name {
@@ -97,7 +97,6 @@
 @media (max-width: 950px) {
     .Landing {
         grid-auto-flow: row;
-        grid-template-rows: 1fr 20rem 1fr;
         grid-template-columns: 1fr;
     }
 

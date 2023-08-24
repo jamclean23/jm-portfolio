@@ -124,23 +124,9 @@ function Landing () {
         changeOpacityAfterDelay('portrait', '100%', 100);
     }
 
-    function handleLandingLoad () {
-        setLandingMinHeight();
-        window.addEventListener('resize', setLandingMinHeight);
-    }
-
-    function setLandingMinHeight () {
-        const root = document.querySelector(':root');
-        const header = document.querySelector('.Header');
-        const landingMinHeight = window.innerHeight - getComputedStyle(header).height.split('px')[0];
-
-        console.log('landingminheight', landingMinHeight);
-        root.style.setProperty('--landing-height', landingMinHeight + 'px');
-    }
-
     // RENDER
     return (
-        <section onLoad={handleLandingLoad} className="Landing">
+        <section className="Landing">
             <aside className="nameAside">
                 <p className="name">
                     {nameContents}
