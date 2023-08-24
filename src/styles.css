@@ -24,4 +24,7 @@ body {
 
     /* Fonts */
     --default-font: 'FiraCode';
+
+    /* Dimensions */
+    --landing-height: 92vh;
 }

@@ -48,8 +48,22 @@ function Landing () {
         const iconsLayers = document.querySelector('.iconsLayer');
         const iconsLayersWidth = +getComputedStyle(iconsLayers).width.split('px')[0];
 
+        const portrait = document.querySelector('.portrait');
+        const portraitHeight = +getComputedStyle(portrait).height.split('px')[0];
+
         let positionsArray = [];
-        let diameter = iconsLayersWidth/2;
+
+        let diameterOffset = 50;
+
+        if (window.innerWidth > 1500) {
+            diameterOffset += 50;
+        }
+
+        if (window.innerWidth > 2550) {
+            diameterOffset += 50;
+        }
+
+        let diameter = portraitHeight/2 + diameterOffset;
 
         for (let i = 0; i < 9; i++){
             let x = Math.sin((360/9*i) * (Math.PI/180))*diameter + iconsLayersWidth/2;
@@ -63,8 +77,23 @@ function Landing () {
         setOrbitIconsOffsets(positionsArray);
     }
 
+    async function changeOpacityAfterDelay (cssClass, newOpacityPercent, delay = 500) {
+
+        await (() => {
+            return new Promise((resolve) => {
+                setTimeout(() => {
+                    console.log('Setting opacity');
+                    const element = document.querySelector('.' + cssClass);
+                    element.style.opacity = newOpacityPercent;
+                }, delay)
+            });
+        })()
+
+    }   
+
     function handleIconsLayerLoad () {
         initIcons();
+        changeOpacityAfterDelay('iconsLayer', '100%', 1000);
     }
 
     function handleWindowResize () {
@@ -72,15 +101,32 @@ function Landing () {
         initIcons();
     }
     
+    function handlePortraitLoad () {
+        changeOpacityAfterDelay('portrait', '100%', 100);
+    }
+
+    function handleLandingLoad () {
+        setLandingMinHeight();
+        window.addEventListener('resize', setLandingMinHeight);
+    }
+
+    function setLandingMinHeight () {
+        const root = document.querySelector(':root');
+        const header = document.querySelector('.Header');
+        const landingMinHeight = window.innerHeight - getComputedStyle(header).height.split('px')[0];
+
+        console.log('landingminheight', landingMinHeight);
+        root.style.setProperty('--landing-height', landingMinHeight + 'px');
+    }
 
     // RENDER
     return (
-        <section className="Landing">
+        <section onLoad={handleLandingLoad} className="Landing">
             <aside className="welcomeText">
                 Hi, I'm Jesse McLean.
             </aside>
             <div className="imgWrapper">
-                <img className='portrait' src={portrait} alt='A picture of Jesse McLean in thought'/>
+                <img className='portrait' onLoad={handlePortraitLoad} src={portrait} alt='A picture of Jesse McLean in thought'/>
                 <div onLoad={handleIconsLayerLoad} className="iconsLayer">
                     <img 
                         className="orbitIcon" 
