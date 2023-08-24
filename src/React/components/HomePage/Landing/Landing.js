@@ -3,7 +3,7 @@
 // ====== IMPORTS ======
 
 // React
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 
 // Css
 import './Landing.css';
@@ -32,16 +32,14 @@ function Landing () {
 
     const name = 'Jesse McLean'
 
+    const iconsLayerLoadCount = useRef(0);
+
 
     // LISTENERS
 
     useEffect(() => {
         window.addEventListener('resize', handleWindowResize);
     }, []);
-
-    useEffect(() => {
-        console.log(orbitIconOffsets);
-    }, [orbitIconOffsets]);
 
 
     // FUNCTIONS
@@ -80,12 +78,35 @@ function Landing () {
         setOrbitIconsOffsets(positionsArray);
     }
 
+    async function typeName () {
+        console.log('typing name');
+        await typeNextLetter();
+
+        function typeNextLetter (iterator = 0) {
+            return new Promise((resolve) => {
+                setTimeout(timeDone, (Math.random()*300) + 100);
+
+                async function timeDone () {
+                    console.log(name[iterator]);
+                    setNameContents((oldContents) => oldContents + name[iterator]);
+                    if (iterator < name.length -1) {
+                        await typeNextLetter(iterator + 1);
+                        resolve();
+                    } else {
+                        const typeCursor = document.querySelector('.typeCursor');
+                        typeCursor.classList.remove('animating');
+                        resolve();
+                    }
+                }
+            });
+        }
+    }
+
     async function changeOpacityAfterDelay (cssClass, newOpacityPercent, delay = 500) {
 
         await (() => {
             return new Promise((resolve) => {
                 setTimeout(() => {
-                    console.log('Setting opacity');
                     const element = document.querySelector('.' + cssClass);
                     element.style.opacity = newOpacityPercent;
                     resolve();
@@ -110,13 +131,19 @@ function Landing () {
     }
 
     function handleIconsLayerLoad () {
-        initIcons();
-        changeOpacityAfterDelay('iconsLayer', '100%', 1000);
-        addClassAfterDelay('typeCursor', 'animating', 1000);
+        if (!iconsLayerLoadCount.current) {
+            iconsLayerLoadCount.current = 1
+            console.log('icons layer loaded');
+            initIcons();
+            changeOpacityAfterDelay('iconsLayer', '100%', 1000);
+            addClassAfterDelay('typeCursor', 'animating', 1000);
+            addClassAfterDelay('aboutText', 'animating', 3000);
+            typeName();
+        }
+
     }
 
     function handleWindowResize () {
-        console.log('resizing');
         initIcons();
     }
     
@@ -219,8 +246,10 @@ function Landing () {
                     />
                 </div>
             </div>
-            <aside className="aboutText">
-                A web developer with a passion for learning and exploration.
+            <aside className="aboutAside">
+                <p className="aboutText">
+                    A web developer with a passion for learning and exploration.
+                </p>
             </aside>
         </section>
     );

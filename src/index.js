@@ -26,13 +26,11 @@ window.addEventListener('animationstart', handleAnimationStart);
 // ====== FUNCTIONS ======
 
 function handleAnimationEnd (event) {
-    event.srcElement.classList.remove('animating');
     handleNavBarAnimationEnd(event);
     handleHamburgerAnimationEnd(event);
 }
 
 function handleAnimationStart (event) {
-    event.srcElement.classList.add('animating');
     handleNavBarAnimationStart(event);
 }
 
