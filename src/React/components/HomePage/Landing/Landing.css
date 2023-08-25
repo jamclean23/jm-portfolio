@@ -109,18 +109,23 @@
 }
 
 .iconsLayer .orbitIcon {
-    width: 1.5rem ;
+    width: 1.5rem;
+    height: 1.5rem;
     animation: 45s linear infinite rotate-icons;
     position: absolute;
     opacity: .7;
 }
 
+.iconsLayer .orbitIcon > img {
+    width: 100%;
+}
+
 @keyframes rotate-icons {
     from {
-        transform: translate(-50%, -50%) rotate(0deg);
+        transform: perspective(500px) translate(-50%, -50%) rotate(0deg);
     }
     to {
-        transform: translate(-50%, -50%) rotate(-360deg);
+        transform: perspective(500px) translate(-50%, -50%) rotate(-360deg);
     }
 }
 
@@ -147,7 +152,8 @@
     }
 
     .iconsLayer .orbitIcon {
-        width: 1rem !important;
+        width: 1rem;
+        height: 1rem;
     }
 
     .Landing .nameAside {
@@ -167,6 +173,7 @@
 @media (min-width: 2550px) {
     .iconsLayer .orbitIcon {
         width: 4rem;
+        height: 4rem;
     }
 
     .Landing .portrait {

@@ -30,6 +30,8 @@ function Landing () {
     const [orbitIconOffsets, setOrbitIconsOffsets] = useState([]);
     const [firstNameContents, setFirstNameContents] = useState('');
     const [lastNameContents, setLastNameContents] = useState('');
+    const mouseX = useRef(0);
+    const mouseY = useRef(0);
 
     const firstName = 'Jesse ';
     const lastName = 'McLean';
@@ -41,11 +43,56 @@ function Landing () {
 
     useEffect(() => {
         window.addEventListener('resize', handleWindowResize);
+        window.addEventListener('mousemove', handleMouseMove);
+
+        updateOrbitIcons();
     }, []);
 
 
     // FUNCTIONS
     
+    function updateOrbitIcons() {
+
+        const icons = document.querySelectorAll('.iconImg');
+
+
+        icons.forEach((icon) => {
+            const iconRect = icon.getBoundingClientRect();
+            const mouseOffsetX = Math.floor(mouseX.current - (iconRect.x + (iconRect.width/2)));
+            const mouseOffsetY = Math.floor(mouseY.current - (iconRect.y + (iconRect.height/2)));
+            const rotateDegreesObj = scaleMouseOffsetsToDegrees(mouseOffsetX, mouseOffsetY, 30);
+
+            icon.style.transform = `perspective(400px) rotateY(${rotateDegreesObj.x}deg) rotateX(${-rotateDegreesObj.y}deg)`;
+            
+        });
+
+        requestAnimationFrame(updateOrbitIcons);
+
+        function scaleMouseOffsetsToDegrees (mouseOffsetX, mouseOffsetY, maxDegrees = 20) {
+            if (mouseOffsetX > window.innerWidth/2) {
+                mouseOffsetX = window.innerWidth/2;
+            } else if (mouseOffsetX < -window.innerWidth/2) {
+                mouseOffsetX = -window.innerWidth/2;
+            }
+
+            if (mouseOffsetY > window.innerHeight/2) {
+                mouseOffsetY = window.innerHeight/2;
+            } else if (mouseOffsetY < -window.innerHeight/2) {
+                mouseOffsetY = -window.innerHeight/2;
+            }
+
+            return {
+                x: (mouseOffsetX / (window.innerWidth/2)) * maxDegrees,
+                y: (mouseOffsetY / (window.innerHeight/2)) * maxDegrees
+            };
+        }
+    }
+
+    function handleMouseMove (event) {
+        mouseX.current = event.clientX;
+        mouseY.current = event.clientY;
+    }
+
     function initIcons () {
 
         const iconsLayers = document.querySelector('.iconsLayer');
@@ -175,87 +222,133 @@ function Landing () {
             <div className="imgWrapper">
                 <img className='portrait' onLoad={handlePortraitLoad} src={portrait} alt='A picture of Jesse McLean in thought'/>
                 <div onLoad={handleIconsLayerLoad} className="iconsLayer">
-                    <img 
-                        className="orbitIcon" 
+                    <div 
+                        className="orbitIcon"
                         style={{
                             top: orbitIconOffsets.length ? orbitIconOffsets[0].top + 'px' : '0',
                             left: orbitIconOffsets.length ? orbitIconOffsets[0].left + 'px' : '0'
                         }} 
-                        src={cssIcon} 
-                        alt='css icon'
+                    >
+                        <img 
+                            className="iconImg"
+                            src={cssIcon} 
+                            alt='css icon'
                         />
-                    <img 
+                    </div>
+                    <div
                         className="orbitIcon" 
                         style={{
                             top: orbitIconOffsets.length ? orbitIconOffsets[1].top + 'px' : '0',
                             left: orbitIconOffsets.length ? orbitIconOffsets[1].left + 'px' : '0'
-                        }} 
+                        }}
+                    >
+
+                    <img 
+                        className="iconImg"
                         src={electronIcon} 
                         alt='electron icon'
-                    />
-                    <img 
+                        />
+                    </div>
+
+                    <div
                         className="orbitIcon" 
                         style={{
                             top: orbitIconOffsets.length ? orbitIconOffsets[2].top + 'px' : '0',
                             left: orbitIconOffsets.length ? orbitIconOffsets[2].left + 'px' : '0'
-                        }} 
-                        src={firebaseIcon} 
-                        alt='firebase icon'
-                    />
-                    <img 
+                        }}
+                    >
+                        <img 
+                            className="iconImg" 
+                            src={firebaseIcon} 
+                            alt='firebase icon'
+                        />
+                    </div>
+
+                    <div
                         className="orbitIcon" 
                         style={{
                             top: orbitIconOffsets.length ? orbitIconOffsets[3].top + 'px' : '0',
                             left: orbitIconOffsets.length ? orbitIconOffsets[3].left + 'px' : '0'
-                        }} 
-                        src={htmlIcon} 
-                        alt='html icon'
-                    />
-                    <img 
+                        }}
+                    >
+                        <img 
+                            className="iconImg" 
+                            src={htmlIcon} 
+                            alt='html icon'
+                        />
+                    </div>
+
+                    <div
                         className="orbitIcon" 
                         style={{
                             top: orbitIconOffsets.length ? orbitIconOffsets[4].top + 'px' : '0',
                             left: orbitIconOffsets.length ? orbitIconOffsets[4].left + 'px' : '0'
-                        }} 
-                        src={jsIcon} 
-                        alt='javascript icon'
-                    />
-                    <img 
+                        }}
+                    >
+                        <img 
+                            className="iconImg" 
+                            src={jsIcon} 
+                            alt='javascript icon'
+                        />
+                    </div>
+
+                    <div
                         className="orbitIcon" 
                         style={{
                             top: orbitIconOffsets.length ? orbitIconOffsets[5].top + 'px' : '0',
                             left: orbitIconOffsets.length ? orbitIconOffsets[5].left + 'px' : '0'
-                        }} 
-                        src={nodeJsIcon} 
-                        alt='nodejs icon'
-                    />
-                    <img 
+                        }}
+                    >
+                        <img 
+                            className="iconImg" 
+                            src={nodeJsIcon} 
+                            alt='nodejs icon'
+                        />
+                    </div>
+
+                    
+                    <div
                         className="orbitIcon" 
                         style={{
                             top: orbitIconOffsets.length ? orbitIconOffsets[6].top + 'px' : '0',
                             left: orbitIconOffsets.length ? orbitIconOffsets[6].left + 'px' : '0'
-                        }} 
-                        src={pythonIcon} 
-                        alt='python icon'
-                    />
-                    <img 
+                        }}
+                    >
+                        <img 
+                            className="iconImg" 
+                            src={pythonIcon} 
+                            alt='python icon'
+                        />
+                    </div>
+
+
+                    <div
                         className="orbitIcon" 
                         style={{
                             top: orbitIconOffsets.length ? orbitIconOffsets[7].top + 'px' : '0',
                             left: orbitIconOffsets.length ? orbitIconOffsets[7].left + 'px' : '0'
-                        }} 
-                        src={reactIcon} 
-                        alt='react icon'
-                    />
-                    <img 
+                        }}
+                    >
+                        <img 
+                            className="iconImg" 
+                            src={reactIcon} 
+                            alt='react icon'
+                        />
+                    </div>
+
+                    <div
                         className="orbitIcon" 
                         style={{
                             top: orbitIconOffsets.length ? orbitIconOffsets[8].top + 'px' : '0',
                             left: orbitIconOffsets.length ? orbitIconOffsets[8].left + 'px' : '0'
-                        }} 
+                        }}
+                    >
+                    <img 
+                        className="iconImg" 
                         src={webpackIcon} 
                         alt='webpack icon'
                     />
+                    </div>
                 </div>
             </div>
             <aside className="aboutAside">
