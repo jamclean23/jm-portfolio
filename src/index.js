@@ -82,6 +82,7 @@ function handleLoad () {
     // Handle NavBar
     if (window.innerWidth < 950) {
         nav.classList.add('hidden');
+        nav.classList.remove('expanded');
         hamburger.classList.remove('hidden');
     } else {
         hamburger.classList.add('hidden');

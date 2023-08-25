@@ -3,7 +3,7 @@
 // ====== IMPORTS ======
 
 // React
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 
 // Css
 import './HomePage.css';
@@ -21,9 +21,21 @@ function HomePage () {
     
     // FUNCTIONS
 
+    const [test, setTest] = useState('');
 
     // LISTENERS
 
+    useEffect(() => {
+        updateTest();
+    });
+
+    // FUNCTIONS
+
+    function updateTest () {
+
+        setTest(document.querySelector('.navBar').classList);
+        requestAnimationFrame(updateTest)
+    }
 
     // RENDER
 
@@ -32,6 +44,7 @@ function HomePage () {
         <Header />
         <main>
             <Landing />
+            <button>{test}</button>
         </main>
     </div>    
     );
