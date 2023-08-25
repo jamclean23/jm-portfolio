@@ -15,7 +15,8 @@
     text-align: center;
 }
 
-.Landing .firstName {
+.Landing .firstName.done {
+    transition: color 1s;
     color: rgb(168, 224, 250);
 }
 
