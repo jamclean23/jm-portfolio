@@ -15,6 +15,10 @@
     text-align: center;
 }
 
+.Landing .firstName {
+    color: rgb(168, 224, 250);
+}
+
 .Landing .aboutText {
     opacity: 0;
     position: absolute;
@@ -105,7 +109,7 @@
 }
 
 .iconsLayer .orbitIcon {
-    width: 3rem;
+    width: 1.5rem ;
     animation: 45s linear infinite rotate-icons;
     position: absolute;
     opacity: .7;
@@ -124,6 +128,8 @@
     .Landing {
         grid-auto-flow: row;
         grid-template-columns: 1fr;
+        grid-template-rows: .5fr 1fr .5fr;
+        width: 100%;
     }
 
     .Landing .portrait {
@@ -150,7 +156,7 @@
     }
 
     .Landing .name {
-        font-size: 1.5rem;
+        font-size: 2rem;
         font-weight: bold;
         letter-spacing: .15rem;
         text-align: center;
@@ -158,12 +164,12 @@
 }
 
 
-@media (max-width: 2550px) {
+@media (min-width: 2550px) {
     .iconsLayer .orbitIcon {
-        width: 1.5rem;
+        width: 4rem;
     }
 
     .Landing .portrait {
-        max-width: 15rem;
+        min-width: 20rem;
     }
 }

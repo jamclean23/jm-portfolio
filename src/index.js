@@ -4,7 +4,7 @@
 // ====== IMPORTS ======
 
 // Styling
-import css from './styles.css';
+import './styles.css';
 
 // React
 import React from 'react';
@@ -80,7 +80,7 @@ function handleLoad () {
     const hamburger = document.querySelector('.hamburger');
 
     // Handle NavBar
-    if (window.innerWidth < 600) {
+    if (window.innerWidth < 950) {
         nav.classList.add('hidden');
         hamburger.classList.remove('hidden');
     } else {
@@ -94,7 +94,7 @@ function handleResize () {
     const nav = document.querySelector('.navBar');
     const hamburger = document.querySelector('.hamburger');
     
-    if (window.innerWidth < 600) {
+    if (window.innerWidth < 950) {
         hamburger.classList.remove('fadeOut');
         nav.classList.remove('expanded');
         nav.classList.add('retracted');

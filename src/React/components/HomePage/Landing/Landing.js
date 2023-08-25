@@ -28,9 +28,11 @@ function Landing () {
     // VARIABLES
     
     const [orbitIconOffsets, setOrbitIconsOffsets] = useState([]);
-    const [nameContents, setNameContents] = useState('');
+    const [firstNameContents, setFirstNameContents] = useState('');
+    const [lastNameContents, setLastNameContents] = useState('');
 
-    const name = 'Jesse McLean'
+    const firstName = 'Jesse ';
+    const lastName = 'McLean';
 
     const iconsLayerLoadCount = useRef(0);
 
@@ -78,19 +80,25 @@ function Landing () {
         setOrbitIconsOffsets(positionsArray);
     }
 
-    async function typeName () {
-        console.log('typing name');
-        await typeNextLetter();
+    async function typeWord (word, stateSetterFirst, stateSetterSecond) {
 
-        function typeNextLetter (iterator = 0) {
+        const typeCursor = document.querySelector('.typeCursor');
+        typeCursor.classList.add('animating');
+        await typeNextLetter(word, stateSetterFirst);
+
+        typeCursor.classList.add('animating');
+        await typeNextLetter('McLean', stateSetterSecond);
+
+        
+
+        function typeNextLetter (word, stateSetter, iterator = 0) {
             return new Promise((resolve) => {
                 setTimeout(timeDone, (Math.random()*300) + 100);
 
                 async function timeDone () {
-                    console.log(name[iterator]);
-                    setNameContents((oldContents) => oldContents + name[iterator]);
-                    if (iterator < name.length -1) {
-                        await typeNextLetter(iterator + 1);
+                    stateSetter((oldContents) => oldContents + word[iterator]);
+                    if (iterator < word.length -1) {
+                        await typeNextLetter(word, stateSetter, iterator + 1);
                         resolve();
                     } else {
                         const typeCursor = document.querySelector('.typeCursor');
@@ -133,12 +141,10 @@ function Landing () {
     function handleIconsLayerLoad () {
         if (!iconsLayerLoadCount.current) {
             iconsLayerLoadCount.current = 1
-            console.log('icons layer loaded');
             initIcons();
+            typeWord(firstName, setFirstNameContents, setLastNameContents);
             changeOpacityAfterDelay('iconsLayer', '100%', 1000);
-            addClassAfterDelay('typeCursor', 'animating', 1000);
             addClassAfterDelay('aboutText', 'animating', 3000);
-            typeName();
         }
 
     }
@@ -156,7 +162,13 @@ function Landing () {
         <section className="Landing">
             <aside className="nameAside">
                 <p className="name">
-                    {nameContents}
+                    <span className="firstName">
+                        {firstNameContents}
+                    </span>
+                    
+                    <span className="lastName">
+                        {lastNameContents}
+                    </span>
                     <span className="typeCursor">|</span>
                 </p>
             </aside>
