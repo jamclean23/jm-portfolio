@@ -134,7 +134,7 @@ function Landing () {
         await typeNextLetter(word, stateSetterFirst);
 
         typeCursor.classList.add('animating');
-        await typeNextLetter('McLean', stateSetterSecond);
+        await typeNextLetter(lastName, stateSetterSecond);
 
         const firstName = document.querySelector('.firstName');
         firstName.classList.add('done');
