@@ -239,9 +239,15 @@ function Header () {
 
     function hideHamburger () {
         const hamburgerBtn = document.querySelector('.hamburger');
+        const hamburgerMenu = document.querySelector('.HamburgerMenu');
 
-        hamburgerBtn.classList.remove('menuShown');
-        document.querySelector('.HamburgerMenu').classList.remove('fadeIn');
+        if (hamburgerBtn.classList) {
+            hamburgerBtn.classList.remove('menuShown');
+
+            if (hamburgerMenu) {
+                document.querySelector('.HamburgerMenu').classList.remove('fadeIn');
+            }
+        }
     }
 
     function handleHeaderLoad () {

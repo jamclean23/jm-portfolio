@@ -1,8 +1,8 @@
 /* Global stylesheet */
 
 .App {
-    overflow: hidden;
     position: relative;
+    overflow-x: hidden;
 }
 
 p {
@@ -26,7 +26,6 @@ body {
     color: var(--font-color);
     font-family: var(--default-font);
     background-color: var(--main-bg-color);
-    overflow-x: hidden;
 }
 
 :root {
@@ -43,6 +42,7 @@ body {
 
     /* Dimensions */
     --header-height: 8vh;
+    --window-width: 100vw;
 }
 
 /* SCROLLBAR */

@@ -13,6 +13,16 @@ import { createRoot } from 'react-dom/client';
 // Main React App
 import { App } from './React/App.js';
 
+// Initialize Css window dimensions updater
+(() => {
+    const root = document.querySelector(':root');
+
+    root.style.setProperty('--window-width', document.body.clientWidth + 'px');
+    window.addEventListener('resize', (event) => {
+        console.log('resizing');
+        root.style.setProperty('--window-width', document.body.clientWidth + 'px');
+    });
+})();
 
 // ====== RENDER ======
 

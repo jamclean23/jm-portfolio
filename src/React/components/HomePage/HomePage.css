@@ -1,4 +1,14 @@
 /* Stylesheet for HomePage.js */
+
+.HomePage {
+    margin-top: var(--header-height);
+}
+
+.HomePage h2 {
+    margin-top: 4rem;
+    text-align: center;
+}
+
 main {
     min-height: 200vh;
 }
