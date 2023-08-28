@@ -4,7 +4,7 @@
     display: grid;
     grid-auto-flow: column;
     grid-template-columns: 1fr 1fr 1fr;
-    height: calc(100vh - var(--header-height));
+    height: max(calc(100vh - var(--header-height)), 400px);
     overflow: hidden;
 }
 
