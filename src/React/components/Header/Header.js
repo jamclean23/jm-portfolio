@@ -32,20 +32,95 @@ function Header () {
         spinnersRef.current = spinners;
     }, [spinners]);
 
+    // On Mount
     useEffect(() => {
+        handleLoad();
+
+        // Hover effects for jmdev button
         const jmdev = document.querySelector('.jmdev');
         jmdev.addEventListener('mouseover', handleJmdevHover);
         jmdev.addEventListener('mouseout', handleJmdevHoverOut);
 
-
+        // Click events from app
         window.addEventListener('click', handleWindowClick);
+
+        
         window.addEventListener('transitionend', transitionEnd);
+
+        window.addEventListener('resize', handleResize);
+        window.addEventListener('animationend', handleAnimationEnd);
 
         handleHeaderLoad();
     }, []);
 
     // FUNCTIONS
-
+    function handleAnimationEnd (event) {
+        handleNavBarAnimationEnd(event);
+        handleHamburgerAnimationEnd(event);
+    }
+    
+    function handleHamburgerAnimationEnd (event) {
+        const hamburger = document.querySelector('.hamburger');
+        const nav = document.querySelector('.navBar');
+    
+    
+        switch (event.animationName) {
+            case 'hamburger-fade-out':
+                hamburger.classList.add('hidden');
+                nav.classList.remove('hidden');
+                nav.classList.remove('retracted');
+                nav.classList.add('expanded');
+                break;
+        }
+    }
+    
+    function handleNavBarAnimationEnd (event) {
+    
+        const nav = document.querySelector('.navBar');
+        const hamburger = document.querySelector('.hamburger');
+    
+        switch (event.animationName) {
+            case 'expanding':
+                break;
+            case 'retracting':
+                nav.classList.add('hidden');
+                hamburger.classList.remove('hidden');
+                break;
+        }
+    }
+    
+    function handleLoad () {
+        const nav = document.querySelector('.navBar');
+        const hamburger = document.querySelector('.hamburger');
+    
+        // Handle NavBar
+        if (window.innerWidth < 950) {
+            console.log('mobile');
+            nav.classList.add('hidden');
+            nav.classList.add('retracted');
+            nav.classList.remove('expanded');
+            hamburger.classList.remove('hidden');
+        } else {
+            console.log('desktop');
+            hamburger.classList.add('hidden');
+        }
+    }
+    
+    function handleResize () {
+    
+        // handle hamburger
+        const nav = document.querySelector('.navBar');
+        const hamburger = document.querySelector('.hamburger');
+        
+        if (window.innerWidth < 950) {
+            hamburger.classList.remove('fadeOut');
+            nav.classList.remove('expanded');
+            nav.classList.add('retracted');
+        } else {
+            hamburger.classList.add('fadeOut');
+        }
+    }
+    
     function reportHeightToCss () {
         const root = document.querySelector(':root');
         const Header = document.querySelector('.Header');
