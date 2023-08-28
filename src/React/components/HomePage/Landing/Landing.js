@@ -15,7 +15,7 @@ import electronIcon from '../../../../assets/icons/electron_white.png';
 import firebaseIcon from '../../../../assets/icons/firebase.png';
 import htmlIcon from '../../../../assets/icons/html.png';
 import jsIcon from '../../../../assets/icons/javascript.png';
-import nodeJsIcon from '../../../../assets/icons/nodejs.png';
+import nodeJsIcon from '../../../../assets/icons/nodejs_white.png';
 import pythonIcon from '../../../../assets/icons/python.png';
 import reactIcon from '../../../../assets/icons/react.png';
 import webpackIcon from '../../../../assets/icons/webpack_white.png';
