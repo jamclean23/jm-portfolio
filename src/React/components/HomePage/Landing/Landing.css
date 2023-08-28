@@ -18,6 +18,7 @@
 .Landing .firstName.done {
     transition: color 1s;
     color: rgb(168, 224, 250);
+    /* color: var(--header-color); */
 }
 
 .Landing .aboutText {

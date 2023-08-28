@@ -41,11 +41,7 @@ function Header () {
         window.addEventListener('click', handleWindowClick);
         window.addEventListener('transitionend', transitionEnd);
 
-        return () => {
-            jmdev.addEventListener('mouseover', handleJmdevHover);
-            window.removeEventListener('click', handleWindowClick);
-            window.removeEventListener('transitionend', transitionEnd);
-        }
+        handleHeaderLoad();
     }, []);
 
     // FUNCTIONS
@@ -53,7 +49,7 @@ function Header () {
     function reportHeightToCss () {
         const root = document.querySelector(':root');
         const Header = document.querySelector('.Header');
-        root.style.setProperty('--header-height', getComputedStyle(Header).height.split('px'));
+        root.style.setProperty('--header-height', getComputedStyle(Header).height);
     }
 
     function generateSpinners (counter = 0) {
@@ -178,12 +174,13 @@ function Header () {
     function handleHeaderLoad () {
         reportHeightToCss();
         window.addEventListener('resize', reportHeightToCss);
+        console.log('header loaded');
     }
 
     // RENDER
     
     return (
-        <header onLoad={handleHeaderLoad} className="Header">
+        <header className="Header">
             <button className="jmdev">
                 jm_dev
                 {spinners}

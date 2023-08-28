@@ -25,10 +25,6 @@ function HomePage () {
 
     // LISTENERS
 
-    useEffect(() => {
-        updateTest();
-    });
-
     // FUNCTIONS
 
     function updateTest () {
@@ -44,7 +40,7 @@ function HomePage () {
         <Header />
         <main>
             <Landing />
-            <button>{test}</button>
+            {/* <button onLoad={updateTest} >{test}</button> */}
         </main>
     </div>    
     );
