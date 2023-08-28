@@ -62,7 +62,7 @@ function Landing () {
             const mouseOffsetY = Math.floor(mouseY.current - (iconRect.y + (iconRect.height/2)));
             const rotateDegreesObj = scaleMouseOffsetsToDegrees(mouseOffsetX, mouseOffsetY, 30);
 
-            icon.style.transform = `perspective(100px) rotateY(${rotateDegreesObj.x}deg) rotateX(${-rotateDegreesObj.y}deg)`;
+            icon.style.transform = `perspective(25px) rotateY(${rotateDegreesObj.x}deg) rotateX(${-rotateDegreesObj.y}deg)`;
             
         });
 
@@ -204,6 +204,7 @@ function Landing () {
     }
     
     function handlePortraitLoad () {
+        initIcons();
         changeOpacityAfterDelay('portrait', '100%', 100);
     }
 
