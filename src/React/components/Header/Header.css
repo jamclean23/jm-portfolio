@@ -25,6 +25,7 @@
 
 .Header.hidden .navBar.expanded > * {
     opacity: 0;
+    pointer-events: none;
 }
 
 .Header.hidden .hamburger {

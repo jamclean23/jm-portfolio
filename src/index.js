@@ -19,7 +19,6 @@ import { App } from './React/App.js';
 
     root.style.setProperty('--window-width', document.body.clientWidth + 'px');
     window.addEventListener('resize', (event) => {
-        console.log('resizing');
         root.style.setProperty('--window-width', document.body.clientWidth + 'px');
     });
 })();

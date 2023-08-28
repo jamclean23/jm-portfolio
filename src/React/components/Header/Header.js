@@ -255,6 +255,18 @@ function Header () {
         window.addEventListener('resize', reportHeightToCss);
     }
 
+    function handleNavLinkClick (toElementClass) {
+        const element = document.querySelector('.' + toElementClass);
+        if (element) {
+
+            window.scroll({
+                top: element.offsetTop,
+                behavior: "smooth"
+            })
+        }
+            
+    }
+    
     // RENDER
     
     return (
@@ -264,10 +276,10 @@ function Header () {
                 {spinners}
             </button>
             <nav className="navBar expanded">
-                <a className="navLink"><span className="navLinkSlashes">//</span><span className="navLinkText">Projects</span></a>
-                <a className="navLink"><span className="navLinkSlashes">//</span><span className="navLinkText">About</span></a>
-                <a className="navLink"><span className="navLinkSlashes">//</span><span className="navLinkText">Contact</span></a>
-                <a className="navLink"><span className="navLinkSlashes">//</span><span className="navLinkText">Resumé</span></a>
+                <a className="navLink" onClick={handleNavLinkClick.bind(this, 'Projects')}><span className="navLinkSlashes">//</span><span className="navLinkText">Projects</span></a>
+                <a className="navLink" onClick={handleNavLinkClick.bind(this, 'About')}><span className="navLinkSlashes">//</span><span className="navLinkText">About</span></a>
+                <a className="navLink" onClick={handleNavLinkClick.bind(this, 'Contact')}><span className="navLinkSlashes">//</span><span className="navLinkText">Contact</span></a>
+                <a className="navLink" onClick={handleNavLinkClick.bind(this, 'Resume')}><span className="navLinkSlashes">//</span><span className="navLinkText">Resumé</span></a>
             </nav>
             <button className="hamburger">
                 ☰
