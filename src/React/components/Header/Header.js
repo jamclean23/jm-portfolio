@@ -284,7 +284,7 @@ function Header () {
             <button className="hamburger">
                 ☰
                 {shouldShowHamburgerMenu
-                    ? <HamburgerMenu/>
+                    ? <HamburgerMenu handleNavLinkClick={handleNavLinkClick}/>
                     : ''
                 }
             </button>
