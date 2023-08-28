@@ -95,13 +95,11 @@ function Header () {
     
         // Handle NavBar
         if (window.innerWidth < 950) {
-            console.log('mobile');
             nav.classList.add('hidden');
             nav.classList.add('retracted');
             nav.classList.remove('expanded');
             hamburger.classList.remove('hidden');
         } else {
-            console.log('desktop');
             hamburger.classList.add('hidden');
         }
     }
@@ -249,7 +247,6 @@ function Header () {
     function handleHeaderLoad () {
         reportHeightToCss();
         window.addEventListener('resize', reportHeightToCss);
-        console.log('header loaded');
     }
 
     // RENDER

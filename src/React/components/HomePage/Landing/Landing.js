@@ -62,7 +62,7 @@ function Landing () {
             const mouseOffsetY = Math.floor(mouseY.current - (iconRect.y + (iconRect.height/2)));
             const rotateDegreesObj = scaleMouseOffsetsToDegrees(mouseOffsetX, mouseOffsetY, 30);
 
-            icon.style.transform = `perspective(25px) rotateY(${rotateDegreesObj.x}deg) rotateX(${-rotateDegreesObj.y}deg)`;
+            icon.style.transform = `perspective(4rem) rotateY(${rotateDegreesObj.x}deg) rotateX(${-rotateDegreesObj.y}deg)`;
             
         });
 
@@ -357,7 +357,7 @@ function Landing () {
             </div>
             <aside className="aboutAside">
                 <p className="aboutText">
-                    A web developer with a passion for learning and exploration.
+                    A <strong className="devText">web developer</strong> with a passion for learning and exploration.
                 </p>
             </aside>
         </section>

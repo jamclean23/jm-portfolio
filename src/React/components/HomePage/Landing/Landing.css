@@ -17,8 +17,11 @@
 
 .Landing .firstName.done {
     transition: color 1s;
-    color: rgb(168, 224, 250);
-    /* color: var(--header-color); */
+    color: var(--accent-name-color);
+}
+
+.Landing .aboutText .devText {
+    color: var(--accent-name-color);
 }
 
 .Landing .aboutText {
@@ -116,6 +119,7 @@
     animation: 45s linear infinite rotate-icons;
     position: absolute;
     opacity: .7;
+    z-index: -1;
 }
 
 .iconsLayer .orbitIcon > img {
