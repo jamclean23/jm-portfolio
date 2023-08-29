@@ -34,6 +34,10 @@ function App (props) {
 
     // FUNCTIONS
 
+    function convertRemToPx (rem = 1) {
+        return (rem * +getComputedStyle(document.documentElement).fontSize.split('px')[0]) + 'px';
+    }
+
     function handleScroll (event) {
         if (window.scrollY > lastScrollValue.current) {
             handleScrollDown();
@@ -80,7 +84,8 @@ function App (props) {
     return (
         <div className='App'>
             <AppContext.Provider value={{
-                appClickEvent
+                appClickEvent,
+                convertRemToPx
                 }}>
                 <HashRouter>
                     <Routes>

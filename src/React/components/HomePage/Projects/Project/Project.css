@@ -1,1 +1,37 @@
 /* Stylesheet for Project.js */
+
+.Project {
+    margin-bottom: 16rem;
+}
+
+.Project h3 {
+    text-align: center;
+}
+
+.Project .imgsWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+}
+
+.Project .imgWrapper {
+    color: black;
+    flex-shrink: 0;
+    height: 26.7rem;
+    width: 12rem;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 0 4px black;
+}
+
+.Project .imgsWrapper img {
+    width: 100%;
+    object-fit: contain;
+}
+
+@media (max-width: 950px) {
+    .Project .imgsWrapper {
+        flex-direction: column;
+    }
+}
