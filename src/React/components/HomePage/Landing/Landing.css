@@ -13,6 +13,7 @@
     font-weight: bold;
     letter-spacing: .3rem;
     text-align: center;
+    min-width: 10rem;
 }
 
 .Landing .firstName.done {

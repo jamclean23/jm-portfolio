@@ -257,10 +257,12 @@ function Header () {
 
     function handleNavLinkClick (toElementClass) {
         const element = document.querySelector('.' + toElementClass);
+        const root = document.querySelector(':root');
+        const headerHeight = getComputedStyle(root).getPropertyValue('--header-height').split('px')[0];
         if (element) {
 
             window.scroll({
-                top: element.offsetTop,
+                top: element.offsetTop - headerHeight,
                 behavior: "smooth"
             })
         }
