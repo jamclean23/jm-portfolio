@@ -37,12 +37,6 @@ function Project (props) {
     }
 
     function handleScroll (event) {
-        console.clear();
-        console.log('Current Scroll:', window.scrollY);
-
-        const Project = document.querySelector('.Project.' + props.project);
-        console.log('Project Position:', Project.offsetTop);
-
         animateImages();
     }
 
@@ -63,11 +57,7 @@ function Project (props) {
             if (offSetY < -threshold) {
                 ratioOffset = (offSetY + threshold) / range;
             }
-            
-            console.log('Offset Y: ', offSetY);
-            
-            console.log('Ratio offset: ', ratioOffset);
-            
+                        
             leftImgWrapper.style.transform = `perspective(2000px) translate(${ratioOffset*100}%, 0) rotateY(${-ratioOffset * .1}turn)`;
             leftImgWrapper.style.opacity = 1 - Math.abs(ratioOffset);
             
@@ -86,17 +76,15 @@ function Project (props) {
     }
 
     function resetImageAnimation () {   
-        console.log('was animating', wasAnimating.current);
-        console.log('resetting animations');
 
         const leftImgWrapper = document.querySelector('.Project.' + props.project + ' .leftImgWrapper');
         const rightImgWrapper = document.querySelector('.Project.' + props.project + ' .rightImgWrapper');
 
-        leftImgWrapper.style.transform = `perspective(1000px) translate(0, 0) rotateY(0turn)`;
-        leftImgWrapper.style.opacity = '100%';
+        leftImgWrapper.style.transform = '';
+        leftImgWrapper.style.opacity = '';
         
-        rightImgWrapper.style.transform = `perspective(2000px) translate(0, 0) rotateY(0turn)`;
-        rightImgWrapper.style.opacity = '100%';
+        rightImgWrapper.style.transform = '';
+        rightImgWrapper.style.opacity = '';
 
         wasAnimating.current = false;
     }
@@ -135,6 +123,9 @@ function Project (props) {
                     <div className={"imgWrapper rightImgWrapper "  + props.images[0].layout}>
                         <img src={props.images[2].src} className="rightImg"/>
                     </div>
+                    <button className="leftBtn">&lt;</button>
+                    <button className="rightBtn">&gt;</button>
+
             </div>
 
         </article>

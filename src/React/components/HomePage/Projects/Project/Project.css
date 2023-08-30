@@ -39,8 +39,43 @@
     object-fit: contain;
 }
 
+.Project .imgsWrapper button {
+    display: none;
+}
+
 @media (max-width: 950px) {
     .Project .imgsWrapper {
-        flex-direction: column;
+        display: block;
+        overflow: hidden;
+        position: relative;
+        width: 100%;
+        min-height: 23rem;
+    }
+
+    .Project .imgWrapper {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .Project .imgsWrapper button {
+        display: block;
+        border-radius: 4px;
+        position: absolute;
+        background-color: black;
+        opacity: 30%;
+        color: white;
+        font-size: 2rem;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+    
+    .Project .leftBtn {
+        left: .5rem;
+    }
+    .Project .rightBtn {
+        right: .5rem;
     }
 }
+
