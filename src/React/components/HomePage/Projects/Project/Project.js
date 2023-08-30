@@ -3,7 +3,7 @@
 // ====== IMPORTS ======
 
 // React
-import React, { useEffect, useContext } from "react";
+import React, { useEffect, useContext, useState, useRef } from "react";
 
 // Css
 import './Project.css';
@@ -18,16 +18,23 @@ function Project (props) {
 
     // Variables
 
+    const wasAnimating = useRef(false);
     const convertRemToPx = useContext(AppContext).convertRemToPx;
 
     // Listeners
 
     useEffect(() => {
         window.addEventListener('scroll', handleScroll);
+        window.addEventListener('resize', handleResize);
+
     }, []);
 
 
     // Function
+
+    function handleResize () {
+        animateImages();
+    }
 
     function handleScroll (event) {
         console.clear();
@@ -40,33 +47,60 @@ function Project (props) {
     }
 
     function animateImages () {
+
         const Project = document.querySelector('.Project.' + props.project);
         const leftImgWrapper = document.querySelector('.Project.' + props.project + ' .leftImgWrapper');
         const rightImgWrapper = document.querySelector('.Project.' + props.project + ' .rightImgWrapper');
         
-        let offSetY = -(Project.offsetTop - window.scrollY);
-        let range = 400;
-        let threshold = 200;
-        let ratioOffset = 0;
+        if (window.innerWidth > 950) {
 
-        if (offSetY < -threshold) {
-            ratioOffset = (offSetY + threshold) / range;
-        }
-        
-        console.log('Offset Y: ', offSetY);
+            
+            let offSetY = -(Project.offsetTop - window.scrollY);
+            let range = 400;
+            let threshold = 200;
+            let ratioOffset = 0;
+            
+            if (offSetY < -threshold) {
+                ratioOffset = (offSetY + threshold) / range;
+            }
+            
+            console.log('Offset Y: ', offSetY);
+            
+            console.log('Ratio offset: ', ratioOffset);
+            
+            leftImgWrapper.style.transform = `perspective(2000px) translate(${ratioOffset*100}%, 0) rotateY(${-ratioOffset * .1}turn)`;
+            leftImgWrapper.style.opacity = 1 - Math.abs(ratioOffset);
+            
+            rightImgWrapper.style.transform = `perspective(2000px) translate(${-ratioOffset*100}%, 0) rotateY(${ratioOffset * .1}turn)`;
+            rightImgWrapper.style.opacity = 1 - Math.abs(ratioOffset);
 
-        console.log('Ratio offset: ', ratioOffset);
+            wasAnimating.current = true;
+        } else {
+            if (wasAnimating.current) {
+                resetImageAnimation();
+            }
+        } 
 
-        leftImgWrapper.style.transform = `perspective(1000px) translate(${ratioOffset*100}%, 0) rotateY(${-ratioOffset * .1}turn)`;
-        leftImgWrapper.style.opacity = 1 - Math.abs(ratioOffset);
-
-        rightImgWrapper.style.transform = `perspective(2000px) translate(${-ratioOffset*100}%, 0) rotateY(${ratioOffset * .1}turn)`;
-        rightImgWrapper.style.opacity = 1 - Math.abs(ratioOffset);
-
-
-
+            
+            
     }
 
+    function resetImageAnimation () {   
+        console.log('was animating', wasAnimating.current);
+        console.log('resetting animations');
+
+        const leftImgWrapper = document.querySelector('.Project.' + props.project + ' .leftImgWrapper');
+        const rightImgWrapper = document.querySelector('.Project.' + props.project + ' .rightImgWrapper');
+
+        leftImgWrapper.style.transform = `perspective(1000px) translate(0, 0) rotateY(0turn)`;
+        leftImgWrapper.style.opacity = '100%';
+        
+        rightImgWrapper.style.transform = `perspective(2000px) translate(0, 0) rotateY(0turn)`;
+        rightImgWrapper.style.opacity = '100%';
+
+        wasAnimating.current = false;
+    }
+        
 
     // Render
 
@@ -90,16 +124,16 @@ function Project (props) {
             </h3>
             
             <div className="imgsWrapper">
-                    <div className="imgWrapper leftImgWrapper">
-                        <img src={props.images[0]} className="leftImg"/>
+                    <div className={"imgWrapper leftImgWrapper " + props.images[0].layout}>
+                        <img src={props.images[0].src} className="leftImg"/>
                     </div>
 
-                    <div className="imgWrapper centerImgWrapper">
-                        <img src={props.images[1]} className="centerImg"/>
+                    <div className={"imgWrapper centerImgWrapper " + props.images[0].layout}>
+                        <img src={props.images[1].src} className="centerImg"/>
                     </div>
 
-                    <div className="imgWrapper rightImgWrapper">
-                        <img src={props.images[2]} className="rightImg"/>
+                    <div className={"imgWrapper rightImgWrapper "  + props.images[0].layout}>
+                        <img src={props.images[2].src} className="rightImg"/>
                     </div>
             </div>
 

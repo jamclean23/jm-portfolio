@@ -15,13 +15,22 @@
     gap: 2rem;
 }
 
-.Project .imgWrapper {
+.Project .imgWrapper.mobile {
     color: black;
     flex-shrink: 0;
-    height: 26.7rem;
-    width: 12rem;
+    height: 20rem;
+    width: 9rem;
     overflow: hidden;
     border-radius: 8px;
+    box-shadow: 0 0 4px black;
+}
+
+.Project .imgWrapper.desktop {
+    color: black;
+    flex-shrink: 0;
+    height: 9.6rem;
+    width: 17rem;
+    overflow: hidden;
     box-shadow: 0 0 4px black;
 }
 

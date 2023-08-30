@@ -13,24 +13,98 @@ import './Projects.css';
 import Project from "./Project/Project.js";
 
 // Images
-import treeImg1 from '../../../../assets/images/id_that_tree/treeImg1.png';
-import treeImg2 from '../../../../assets/images/id_that_tree/treeImg2.png';
-import treeImg3 from '../../../../assets/images/id_that_tree/treeImg3.png';
+import treeImg1 from '../../../../assets/images/id-that-tree/treeImg1.png';
+import treeImg2 from '../../../../assets/images/id-that-tree/treeImg2.png';
+import treeImg3 from '../../../../assets/images/id-that-tree/treeImg3.png';
 
 import waldoImg1 from '../../../../assets/images/wheres-waldo/wheresWaldo1.png';
 import waldoImg2 from '../../../../assets/images/wheres-waldo/wheresWaldo3.png';
 import waldoImg3 from '../../../../assets/images/wheres-waldo/wheresWaldo2.png';
+
+import limeImg1 from '../../../../assets/images/whamazon-lime/limeImg1.png';
+import limeImg2 from '../../../../assets/images/whamazon-lime/limeImg2.png';
+import limeImg3 from '../../../../assets/images/whamazon-lime/limeImg3.png';
+
 
 // ====== COMPONENT ======
 
 function Projects () {
     // RENDER
     return (<section className="Projects">
+
         <h2>// Projects</h2>
-        <Project project='idThatTree' images={[treeImg1, treeImg2, treeImg3]} imageOrientation={'mobile'}/>
-        <Project project='wheresWaldo' images={[waldoImg1, waldoImg2, waldoImg3]} imageOrientation={'mobile'}/>
-        <Project project='whamazonLime' images={[treeImg1, treeImg2, treeImg3]} imageOrientation={'desktop'}/>
-        <Project project='minecraftModInstaller' images={[treeImg1, treeImg2, treeImg3]} imageOrientation={'desktop'}/>
+
+        <Project 
+            project='idThatTree' 
+            images={[
+                        {
+                            src: treeImg1, 
+                            layout: 'mobile'
+                        }, 
+                        {
+                            src: treeImg2, 
+                            layout: 'mobile'
+                        }, 
+                        {
+                            src: treeImg3, 
+                            layout: 'mobile'
+                        }
+                    ]} 
+        />
+
+        <Project 
+            project='wheresWaldo' 
+            images={[
+                        {
+                            src: waldoImg1,
+                            layout: 'mobile'
+                        },
+                        {
+                            src: waldoImg2,
+                            layout: 'mobile' 
+                        },
+                        {
+                            src: waldoImg3,
+                            layout: 'mobile'
+                        }
+                    ]}
+        />
+
+        <Project 
+            project='whamazonLime' 
+            images={[
+                        {
+                            src: limeImg1,
+                            layout: 'desktop'
+                        },
+                        { 
+                            src: limeImg2,
+                            layout: 'desktop'
+                        }, 
+                        {
+                            src: limeImg3,
+                            layout: 'desktop'
+                        }
+                    ]}
+        />
+
+        <Project 
+            project='minecraftModInstaller' 
+            images={[
+                {
+                    src: treeImg1,
+                    layout: 'desktop'
+                }, 
+                {
+                    src: treeImg2, 
+                    layout: 'desktop'
+                },
+                {
+                    src: treeImg3,
+                    layout: 'desktop'
+                }
+            ]}
+        />
     </section>);
 }
 
