@@ -72,6 +72,7 @@ function Projects () {
 
         <Project 
             project='whamazonLime' 
+            mode={'desktopImgs'}
             images={[
                         {
                             src: limeImg1,
@@ -90,6 +91,7 @@ function Projects () {
 
         <Project 
             project='minecraftModInstaller' 
+            mode={'desktopImgs'}
             images={[
                 {
                     src: treeImg1,

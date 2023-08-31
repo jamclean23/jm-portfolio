@@ -1,11 +1,12 @@
 /* Stylesheet for Project.js */
 
 .Project {
-    margin-bottom: 16rem;
+    box-shadow: 0 4px 2px -2px var(--header-color);
+    padding-top: 2rem;
+    padding-bottom: 6rem;
 }
 
 .Project h3 {
-    margin-top: 6rem;
     text-align: center;
 }
 
@@ -50,12 +51,21 @@
 }
 
 
+.Project .descriptionWrapper {
+    padding-top: 2rem;
+    padding-inline: 20vw;
+}
+
 @media (max-width: 950px) {
     .Project .imgsWrapper {
         display: block;
         position: relative;
         width: 100%;
         min-height: 23rem;
+    }
+
+    .Project .imgsWrapper.desktopImgs {
+        min-height: 10rem;
     }
 
     .Project .imgWrapper {
@@ -127,46 +137,52 @@
     .Project .rightBtn {
         right: .5rem;
     }
+    .indicatorWrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 1rem;
+    }
+    
+    .indicatorBox {
+        padding: 1rem 2rem;
+        /* background-color: var(--header-color); */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 6px;
+        gap: 1rem;
+    }
+    
+    .indicator {
+        opacity: .2;
+        padding: 0;
+        background-color: transparent;
+        height: 2rem;
+        width: 2rem;
+        border: none;
+        transition: opacity .2s ease-in-out;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .indicator .circle {
+        background-color: white;
+        height: .7rem;
+        width: .7rem;
+        border-radius: 100%;
+    }
+    
+    .indicator.selected {
+        opacity: .9;
+    }
+
+    .Project .descriptionWrapper {
+        padding-top: 2rem;
+        padding-inline: 10vw;
+    }
 }
 
-.indicatorWrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 1rem;
-}
 
-.indicatorBox {
-    padding: 1rem 2rem;
-    /* background-color: var(--header-color); */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 6px;
-    gap: 1rem;
-}
-
-.indicator {
-    opacity: .2;
-    padding: 0;
-    background-color: transparent;
-    height: 2rem;
-    width: 2rem;
-    border: none;
-    transition: opacity .2s ease-in-out;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.indicator .circle {
-    background-color: white;
-    height: .7rem;
-    width: .7rem;
-    border-radius: 100%;
-}
-
-.indicator.selected {
-    opacity: .9;
-}
 

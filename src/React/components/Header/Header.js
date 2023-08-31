@@ -262,7 +262,7 @@ function Header () {
         if (element) {
 
             window.scroll({
-                top: element.offsetTop - headerHeight,
+                top: element.offsetTop,// - headerHeight
                 behavior: "smooth"
             })
         }

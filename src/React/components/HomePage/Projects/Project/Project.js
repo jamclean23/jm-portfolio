@@ -285,7 +285,7 @@ function Project (props) {
                 }
             </h3>
             
-            <div className="imgsWrapper">
+            <div className={"imgsWrapper" + (props.mode === 'desktopImgs' ? " desktopImgs" : '')}>
                     <div className={"imgWrapper leftImgWrapper center " + props.images[0].layout}>
                         <img src={props.images[0].src} alt='Image of application' className="leftImg"/>
                     </div>
@@ -324,8 +324,98 @@ function Project (props) {
                     >
                         <div className="circle"></div>
                     </button>
-
                 </div>
+            </div>
+            
+            <div className="descriptionWrapper">
+
+                {/* ====== ID THAT TREE ======*/}
+                { props.project === 'idThatTree'
+                    ? 
+                        <> 
+                            <p>A single page web app for learning the trees of North Carolina. Swipe to make selections, and then review your score after the quiz.</p>
+
+                            <h4>Technologies used in this project:</h4>
+                            <ul>
+                                <li>React</li>
+                                <li>Webpack</li>
+                                <li>Javascript</li>
+                                <li>Html</li>
+                                <li>Css</li>
+                                <li>Github / Github Pages</li>
+
+                            </ul>
+                        </>
+                    : null
+                }
+
+                {/* ====== WHERE'S WALDO ====== */}
+                { props.project === 'wheresWaldo'
+                    ? 
+                        <> 
+                            <p>Find Waldo as fast as you can with this single page web app. Review your results and record them to the leaderboard.</p>
+
+                            <h4>Technologies used in this project:</h4>
+                            <ul>
+                                <li>React</li>
+                                <li>Webpack</li>
+                                <li>Javascript</li>
+                                <li>Html</li>
+                                <li>Css</li>
+                                <li>Github / Github Pages</li>
+                                <li>Google Firebase / Firestore</li>
+
+                            </ul>
+                        </>
+                    : null
+                }
+
+                {/* ====== WHAMAZON LIME ====== */}
+                { props.project === 'whamazonLime'
+                    ? 
+                        <> 
+                            <p>An e-commerce site showcasing products for the tech and gaming inclined. Implements authentication and storing of users' data with Firebase, and uses a custom proxy API to retrieve product information from printify.</p>
+
+                            <h4>Technologies used in the project:</h4>
+                            <ul>
+                                <li>React</li>
+                                <li>React Hash Router</li>
+                                <li>Webpack</li>
+                                <li>Javascript</li>
+                                <li>Html</li>
+                                <li>Css</li>
+                                <li>Github / Github Pages</li>
+                                <li>Google Authentication</li>
+                                <li>Google Firebase / Firestore</li>
+                                <li>Express / Node.js</li>
+                                <li>Printify API</li>
+
+                            </ul>
+                        </>
+                    : null
+                }  
+
+                {/* ====== MINECRAFT INSTALLER ====== */}
+                { props.project === 'minecraftModInstaller'
+                    ? 
+                        <> 
+                            <p>A Windows application for installing a custom Minecraft modpack, textures, and shaders. Users are guided through the process of finding the correct install locations, and given choices as to what will be installed.</p>
+
+                            <h4>Technologies used in the project:</h4>
+                            <ul>
+                                <li>React</li>
+                                <li>Webpack</li>
+                                <li>Javascript</li>
+                                <li>Html</li>
+                                <li>Css</li>
+                                <li>Node.js</li>
+                                <li>Electron JS</li>
+
+                            </ul>
+                        </>
+                    : null
+                }  
+
             </div>
 
         </article>
