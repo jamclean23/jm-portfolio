@@ -55,9 +55,34 @@
     .Project .imgWrapper {
         position: absolute;
         top: 50%;
-        left: 50%;
         transform: translate(-50%, -50%);
+        pointer-events: none;
+        left: 50%;
+        transition: left 1s, opacity .5s;
     }
+
+    .Project .imgWrapper.left {
+        left: 0%;
+        opacity: 0;
+        z-index: -1;
+    }
+
+    .Project .imgWrapper.center {
+        left: 50%;
+        z-index: 1;
+    }
+
+    .Project .imgWrapper.right {
+        left: 100%;
+        opacity: 0;
+        z-index: -1;
+    }
+
+    .Project .imgWrapper.across {
+        border: 2px solid red;
+        transition: none;
+    }
+
 
     .Project .imgsWrapper button {
         display: block;
@@ -70,7 +95,7 @@
         top: 50%;
         transform: translateY(-50%);
     }
-    
+
     .Project .leftBtn {
         left: .5rem;
     }

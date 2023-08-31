@@ -89,6 +89,80 @@ function Project (props) {
         wasAnimating.current = false;
     }
         
+    function handleBtnClick (direction) {
+        const imgsWrappersArray = getImgWrappersArray();
+        const displayedImg = getDisplayedImg();
+        const leftImg = document.querySelector('.Project .imgWrapper.left');
+        const rightImg = document.querySelector('.Project .imgWrapper.right');
+
+
+        if (imgsWrappersArray.length > 1 && displayedImg.imgWrapper) {
+            
+
+            if (direction === 'left') {
+                displayedImg.imgWrapper.classList.add('left');
+                displayedImg.imgWrapper.classList.remove('center');
+
+
+                const lastAcross = document.querySelector('.Project .imgWrapper.across');
+                if (lastAcross) {
+                    lastAcross.classList.remove('across');
+                }
+
+                leftImg.classList.remove('left');
+                leftImg.classList.add('across');
+                leftImg.classList.add('right');
+
+                rightImg.classList.remove('right');
+                rightImg.classList.add('center');
+
+
+            } else if (direction === 'right') {
+                displayedImg.imgWrapper.classList.add('right');
+                displayedImg.imgWrapper.classList.remove('center');
+
+
+                const lastAcross = document.querySelector('.Project .imgWrapper.across');
+                if (lastAcross) {
+                    lastAcross.classList.remove('across');
+                }
+
+                rightImg.classList.remove('right');
+                rightImg.classList.add('across');
+                rightImg.classList.add('left');
+
+                leftImg.classList.remove('left');
+                leftImg.classList.add('center');
+            }
+            
+        }
+
+        
+    }
+
+    function getDisplayedImg () {
+        const imgWrappers = getImgWrappersArray();
+
+        let displayedImg;
+        let displayedImgIndex;
+
+        imgWrappers.forEach((imgWrapper, index) => {
+            if (imgWrapper.classList.contains('center')) {
+                displayedImg = imgWrapper;
+                displayedImgIndex = index;
+            }
+        });
+
+        return {
+            imgWrapper: displayedImg,
+            indexInArray: displayedImgIndex
+        };
+    }
+
+    function getImgWrappersArray () {
+        return document.querySelectorAll('.Project.' + props.project + ' .imgWrapper');
+    }
+
 
     // Render
 
@@ -112,19 +186,19 @@ function Project (props) {
             </h3>
             
             <div className="imgsWrapper">
-                    <div className={"imgWrapper leftImgWrapper " + props.images[0].layout}>
+                    <div className={"imgWrapper leftImgWrapper center " + props.images[0].layout}>
                         <img src={props.images[0].src} className="leftImg"/>
                     </div>
 
-                    <div className={"imgWrapper centerImgWrapper " + props.images[0].layout}>
+                    <div className={"imgWrapper centerImgWrapper right " + props.images[0].layout}>
                         <img src={props.images[1].src} className="centerImg"/>
                     </div>
 
-                    <div className={"imgWrapper rightImgWrapper "  + props.images[0].layout}>
+                    <div className={"imgWrapper rightImgWrapper left "  + props.images[0].layout}>
                         <img src={props.images[2].src} className="rightImg"/>
                     </div>
-                    <button className="leftBtn">&lt;</button>
-                    <button className="rightBtn">&gt;</button>
+                    <button onClick={handleBtnClick.bind(this, 'left')} className="leftBtn">&lt;</button>
+                    <button onClick={handleBtnClick.bind(this, 'right')} className="rightBtn">&gt;</button>
 
             </div>
 
