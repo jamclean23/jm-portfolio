@@ -19,18 +19,26 @@ function Project (props) {
     // Variables
 
     const wasAnimating = useRef(false);
-    const convertRemToPx = useContext(AppContext).convertRemToPx;
+    const [selectedImgIndex, setSelectedImgIndex] = useState(1);
 
     // Listeners
 
+    // Did mount
     useEffect(() => {
+        // Listeners
         window.addEventListener('scroll', handleScroll);
         window.addEventListener('resize', handleResize);
 
+        // Used for indicators
+        updateImgIndex();
     }, []);
 
 
     // Function
+
+    function updateImgIndex () {
+        setSelectedImgIndex(getDisplayedImg().indexInArray);
+    }
 
     function handleResize () {
         animateImages();
@@ -92,52 +100,71 @@ function Project (props) {
     function handleBtnClick (direction) {
         const imgsWrappersArray = getImgWrappersArray();
         const displayedImg = getDisplayedImg();
-        const leftImg = document.querySelector('.Project .imgWrapper.left');
-        const rightImg = document.querySelector('.Project .imgWrapper.right');
+        const leftImg = document.querySelector('.Project.' + props.project + ' .imgWrapper.left');
+        const rightImg = document.querySelector('.Project.' + props.project + ' .imgWrapper.right');
 
 
         if (imgsWrappersArray.length > 1 && displayedImg.imgWrapper) {
             
 
             if (direction === 'left') {
-                displayedImg.imgWrapper.classList.add('left');
-                displayedImg.imgWrapper.classList.remove('center');
 
-
-                const lastAcross = document.querySelector('.Project .imgWrapper.across');
-                if (lastAcross) {
-                    lastAcross.classList.remove('across');
-                }
-
-                leftImg.classList.remove('left');
-                leftImg.classList.add('across');
-                leftImg.classList.add('right');
-
-                rightImg.classList.remove('right');
-                rightImg.classList.add('center');
-
+                scrollCarouselLeft(displayedImg, leftImg, rightImg);
 
             } else if (direction === 'right') {
-                displayedImg.imgWrapper.classList.add('right');
-                displayedImg.imgWrapper.classList.remove('center');
 
+                scrollCarouselRight(displayedImg, leftImg, rightImg);
 
-                const lastAcross = document.querySelector('.Project .imgWrapper.across');
-                if (lastAcross) {
-                    lastAcross.classList.remove('across');
-                }
-
-                rightImg.classList.remove('right');
-                rightImg.classList.add('across');
-                rightImg.classList.add('left');
-
-                leftImg.classList.remove('left');
-                leftImg.classList.add('center');
             }
+            
+            updateImgIndex();
             
         }
 
         
+    }
+
+    function scrollCarouselLeft (displayedImg, leftImg, rightImg) {
+        
+                // Centered to left
+                displayedImg.imgWrapper.classList.add('left');
+                displayedImg.imgWrapper.classList.remove('center');
+
+                // No transition for the crossing wrapper
+                const lastAcross = document.querySelector('.Project.'+ props.project +' .imgWrapper.across');
+                if (lastAcross) {
+                    lastAcross.classList.remove('across');
+                }
+
+                // Left to right
+                leftImg.classList.remove('left');
+                leftImg.classList.add('across');
+                leftImg.classList.add('right');
+
+                // Right to center
+                rightImg.classList.remove('right');
+                rightImg.classList.add('center');
+    }
+
+    function scrollCarouselRight (displayedImg, leftImg, rightImg) {
+                    // Centered to right
+                    displayedImg.imgWrapper.classList.add('right');
+                    displayedImg.imgWrapper.classList.remove('center');
+    
+                    // No transition for the crossing wrapper
+                    const lastAcross = document.querySelector('.Project.' + props.project +  ' .imgWrapper.across');
+                    if (lastAcross) {
+                        lastAcross.classList.remove('across');
+                    }
+    
+                    // Right to left
+                    rightImg.classList.remove('right');
+                    rightImg.classList.add('across');
+                    rightImg.classList.add('left');
+    
+                    // Left to center
+                    leftImg.classList.remove('left');
+                    leftImg.classList.add('center');
     }
 
     function getDisplayedImg () {
@@ -187,19 +214,36 @@ function Project (props) {
             
             <div className="imgsWrapper">
                     <div className={"imgWrapper leftImgWrapper center " + props.images[0].layout}>
-                        <img src={props.images[0].src} className="leftImg"/>
+                        <img src={props.images[0].src} alt='Image of application' className="leftImg"/>
                     </div>
 
                     <div className={"imgWrapper centerImgWrapper right " + props.images[0].layout}>
-                        <img src={props.images[1].src} className="centerImg"/>
+                        <img src={props.images[1].src} alt='Image of application' className="centerImg"/>
                     </div>
 
                     <div className={"imgWrapper rightImgWrapper left "  + props.images[0].layout}>
-                        <img src={props.images[2].src} className="rightImg"/>
+                        <img src={props.images[2].src} alt='Image of application' className="rightImg"/>
                     </div>
                     <button onClick={handleBtnClick.bind(this, 'left')} className="leftBtn">&lt;</button>
                     <button onClick={handleBtnClick.bind(this, 'right')} className="rightBtn">&gt;</button>
+            </div>
 
+            <div className="indicatorWrapper">
+                <div className="indicatorBox">
+
+                    <button 
+                        className={"indicator" + (selectedImgIndex === 1 ? ' selected' : '')}
+                    ></button>
+
+                    <button
+                        className={"indicator" + (selectedImgIndex === 0 ? ' selected' : '')}
+                    ></button>
+
+                    <button 
+                        className={"indicator" + (selectedImgIndex === 2 ? ' selected' : '')}
+                    ></button>
+
+                </div>
             </div>
 
         </article>

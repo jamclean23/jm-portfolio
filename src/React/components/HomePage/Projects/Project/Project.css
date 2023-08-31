@@ -5,6 +5,7 @@
 }
 
 .Project h3 {
+    margin-top: 6rem;
     text-align: center;
 }
 
@@ -42,6 +43,11 @@
 .Project .imgsWrapper button {
     display: none;
 }
+
+.indicatorWrapper {
+    display: none;
+}
+
 
 @media (max-width: 950px) {
     .Project .imgsWrapper {
@@ -94,6 +100,10 @@
         font-size: 2rem;
         top: 50%;
         transform: translateY(-50%);
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+        z-index: 1;
+
     }
 
     .Project .leftBtn {
@@ -102,5 +112,36 @@
     .Project .rightBtn {
         right: .5rem;
     }
+}
+
+.indicatorWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1rem;
+}
+
+.indicatorBox {
+    padding: 1rem 2rem;
+    /* background-color: var(--header-color); */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 6px;
+    gap: 2rem;
+}
+
+.indicator {
+    opacity: .2;
+    border-radius: 100%;
+    padding: 0;
+    height: .75rem;
+    width: .75rem;
+    border: none;
+    transition: opacity .2s ease-in-out;
+}
+
+.indicator.selected {
+    opacity: .9;
 }
 
