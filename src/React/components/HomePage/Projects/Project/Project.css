@@ -14,7 +14,9 @@
     justify-content: center;
     align-items: center;
     gap: 2rem;
-    overflow-x: hidden;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    overflow: hidden;
 }
 
 .Project .imgWrapper.mobile {
