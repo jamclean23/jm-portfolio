@@ -307,17 +307,23 @@ function Project (props) {
                     <button 
                         className={"indicator" + (selectedImgIndex === 1 ? ' selected' : '')}
                         onClick={handleIndicatorClick.bind(this, 1)}
-                    ></button>
+                    >
+                        <div className="circle"></div>
+                    </button>
 
                     <button
                         className={"indicator" + (selectedImgIndex === 0 ? ' selected' : '')}
                         onClick={handleIndicatorClick.bind(this, 0)}
-                    ></button>
+                    >
+                        <div className="circle"></div>
+                    </button>
 
                     <button 
                         className={"indicator" + (selectedImgIndex === 2 ? ' selected' : '')}
                         onClick={handleIndicatorClick.bind(this, 2)}
-                    ></button>
+                    >
+                        <div className="circle"></div>
+                    </button>
 
                 </div>
             </div>
