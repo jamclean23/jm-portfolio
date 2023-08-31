@@ -356,9 +356,11 @@ function Landing () {
                 </div>
             </div>
             <aside className="aboutAside">
-                <p className="aboutText">
-                    A <strong className="devText">web developer</strong> with a passion for learning and exploration.
-                </p>
+                <div className="aboutWrapper">
+                    <p className="aboutText">
+                        A <strong className="devText">web developer</strong> with a passion for learning and exploration.
+                    </p>
+                </div>
             </aside>
         </section>
     );

@@ -14,6 +14,7 @@
     justify-content: center;
     align-items: center;
     gap: 2rem;
+    overflow-x: hidden;
 }
 
 .Project .imgWrapper.mobile {
@@ -21,9 +22,7 @@
     flex-shrink: 0;
     height: 20rem;
     width: 9rem;
-    overflow: hidden;
     border-radius: 8px;
-    box-shadow: 0 0 4px black;
 }
 
 .Project .imgWrapper.desktop {
@@ -31,13 +30,13 @@
     flex-shrink: 0;
     height: 9.6rem;
     width: 17rem;
-    overflow: hidden;
-    box-shadow: 0 0 4px black;
 }
 
-.Project .imgsWrapper img {
+.Project .imgWrapper img {
     width: 100%;
     object-fit: contain;
+    box-shadow: 0 0 2px rgb(182, 182, 182);
+    border-radius: 6px;
 }
 
 .Project .imgsWrapper button {
@@ -52,7 +51,6 @@
 @media (max-width: 950px) {
     .Project .imgsWrapper {
         display: block;
-        overflow: hidden;
         position: relative;
         width: 100%;
         min-height: 23rem;
@@ -64,7 +62,11 @@
         transform: translate(-50%, -50%);
         pointer-events: none;
         left: 50%;
-        transition: left 1s, opacity .5s;
+        transition: left 1s, opacity 2s;
+    }
+
+    .Project .imgWrapper img {
+        transition: transform 2s;
     }
 
     .Project .imgWrapper.left {
@@ -73,9 +75,17 @@
         z-index: -1;
     }
 
+    .Project .imgWrapper.left img {
+        transform: translateY(10%) scale(.75);
+    }
+
     .Project .imgWrapper.center {
         left: 50%;
         z-index: 1;
+    }
+
+    .Project .imgWrapper.center img {
+        transform: scale(1);
     }
 
     .Project .imgWrapper.right {
@@ -84,8 +94,11 @@
         z-index: -1;
     }
 
+    .Project .imgWrapper.right img {
+        transform: translateY(10%) scale(.75);
+    }
+
     .Project .imgWrapper.across {
-        border: 2px solid red;
         transition: none;
     }
 

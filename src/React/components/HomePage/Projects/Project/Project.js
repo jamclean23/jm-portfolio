@@ -100,71 +100,78 @@ function Project (props) {
     function handleBtnClick (direction) {
         const imgsWrappersArray = getImgWrappersArray();
         const displayedImg = getDisplayedImg();
-        const leftImg = document.querySelector('.Project.' + props.project + ' .imgWrapper.left');
-        const rightImg = document.querySelector('.Project.' + props.project + ' .imgWrapper.right');
-
 
         if (imgsWrappersArray.length > 1 && displayedImg.imgWrapper) {
             
 
             if (direction === 'left') {
-
-                scrollCarouselLeft(displayedImg, leftImg, rightImg);
+                console.log(displayedImg.indexInArray);
+                scrollCarouselLeft();
 
             } else if (direction === 'right') {
 
-                scrollCarouselRight(displayedImg, leftImg, rightImg);
+                scrollCarouselRight();
 
-            }
-            
-            updateImgIndex();
-            
+            }            
         }
 
         
     }
 
-    function scrollCarouselLeft (displayedImg, leftImg, rightImg) {
-        
-                // Centered to left
-                displayedImg.imgWrapper.classList.add('left');
-                displayedImg.imgWrapper.classList.remove('center');
+    function scrollCarouselLeft () {
 
-                // No transition for the crossing wrapper
-                const lastAcross = document.querySelector('.Project.'+ props.project +' .imgWrapper.across');
-                if (lastAcross) {
-                    lastAcross.classList.remove('across');
-                }
+        const displayedImg = getDisplayedImg();
+        const leftImg = document.querySelector('.Project.' + props.project + ' .imgWrapper.left');
+        const rightImg = document.querySelector('.Project.' + props.project + ' .imgWrapper.right');
 
-                // Left to right
-                leftImg.classList.remove('left');
-                leftImg.classList.add('across');
-                leftImg.classList.add('right');
+        // Centered to left
+        displayedImg.imgWrapper.classList.add('left');
+        displayedImg.imgWrapper.classList.remove('center');
 
-                // Right to center
-                rightImg.classList.remove('right');
-                rightImg.classList.add('center');
+        // No transition for the crossing wrapper
+        const lastAcross = document.querySelector('.Project.'+ props.project +' .imgWrapper.across');
+        if (lastAcross) {
+            lastAcross.classList.remove('across');
+        }
+
+        // Left to right
+        leftImg.classList.remove('left');
+        leftImg.classList.add('across');
+        leftImg.classList.add('right');
+
+        // Right to center
+        rightImg.classList.remove('right');
+        rightImg.classList.add('center');
+
+        updateImgIndex();
     }
 
-    function scrollCarouselRight (displayedImg, leftImg, rightImg) {
-                    // Centered to right
-                    displayedImg.imgWrapper.classList.add('right');
-                    displayedImg.imgWrapper.classList.remove('center');
-    
-                    // No transition for the crossing wrapper
-                    const lastAcross = document.querySelector('.Project.' + props.project +  ' .imgWrapper.across');
-                    if (lastAcross) {
-                        lastAcross.classList.remove('across');
-                    }
-    
-                    // Right to left
-                    rightImg.classList.remove('right');
-                    rightImg.classList.add('across');
-                    rightImg.classList.add('left');
-    
-                    // Left to center
-                    leftImg.classList.remove('left');
-                    leftImg.classList.add('center');
+    function scrollCarouselRight () {
+
+        const displayedImg = getDisplayedImg();
+        const leftImg = document.querySelector('.Project.' + props.project + ' .imgWrapper.left');
+        const rightImg = document.querySelector('.Project.' + props.project + ' .imgWrapper.right');
+
+        // Centered to right
+        displayedImg.imgWrapper.classList.add('right');
+        displayedImg.imgWrapper.classList.remove('center');
+
+        // No transition for the crossing wrapper
+        const lastAcross = document.querySelector('.Project.' + props.project +  ' .imgWrapper.across');
+        if (lastAcross) {
+            lastAcross.classList.remove('across');
+        }
+
+        // Right to left
+        rightImg.classList.remove('right');
+        rightImg.classList.add('across');
+        rightImg.classList.add('left');
+
+        // Left to center
+        leftImg.classList.remove('left');
+        leftImg.classList.add('center');
+
+        updateImgIndex();
     }
 
     function getDisplayedImg () {
@@ -190,6 +197,72 @@ function Project (props) {
         return document.querySelectorAll('.Project.' + props.project + ' .imgWrapper');
     }
 
+    function handleIndicatorClick (indexClicked) {
+        
+        let path = findShortestPath(indexClicked, getDisplayedImg().indexInArray, getImgWrappersArray().length);
+
+        console.log('Path: ', path);
+
+        if (path > 0) {
+            for (let i = 0; i < path; i++) {
+                scrollCarouselLeft();
+            }
+        } else if (path < 0) {
+            for (let i = 0; i > path; i--) {
+                scrollCarouselRight();
+            }
+        }
+
+    }
+
+    function findShortestPath(index1, index2, length) {
+
+        let leftDistance = iteratePath(index1, index2, length, 'left');
+        let rightDistance = iteratePath(index1, index2, length, 'right');
+
+        return leftDistance < rightDistance 
+            ? leftDistance 
+            : -rightDistance; 
+
+        function iteratePath (index1, index2, length, direction, currentIndex = index1, distance = 0) {
+
+            if (distance > length) {
+                return 'not found';
+            }
+
+            if (currentIndex === index2) {
+                return distance;
+            } else {   
+                if (direction === 'right') {
+
+                    // Wrap
+                    ++currentIndex;
+                    if (currentIndex > length - 1) {
+                        currentIndex = 0;
+                    }
+
+                    // Recurse
+                    return iteratePath(index1, index2, length, direction, currentIndex, ++distance);
+
+                } else if (direction === 'left') {
+
+                    // Wrap
+                    --currentIndex;
+                    if (currentIndex < 0) {
+                        currentIndex = length - 1;
+                    }
+
+                    // Recurse
+                    return iteratePath(index1, index2, length, direction, currentIndex, ++distance);
+
+                } else {
+                    throw new Error('No direction provided');
+                }            
+            }
+        }
+        
+
+    }
 
     // Render
 
@@ -233,14 +306,17 @@ function Project (props) {
 
                     <button 
                         className={"indicator" + (selectedImgIndex === 1 ? ' selected' : '')}
+                        onClick={handleIndicatorClick.bind(this, 1)}
                     ></button>
 
                     <button
                         className={"indicator" + (selectedImgIndex === 0 ? ' selected' : '')}
+                        onClick={handleIndicatorClick.bind(this, 0)}
                     ></button>
 
                     <button 
                         className={"indicator" + (selectedImgIndex === 2 ? ' selected' : '')}
+                        onClick={handleIndicatorClick.bind(this, 2)}
                     ></button>
 
                 </div>
