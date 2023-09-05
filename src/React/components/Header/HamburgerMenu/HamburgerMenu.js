@@ -25,6 +25,7 @@ function HamburgerMenu (props) {
 
     return (
         <nav className="HamburgerMenu fadeIn">
+                <a className="navLink" onClick={props.handleNavLinkClick.bind(this, 'Home')}><span className="navLinkSlashes">//</span><span className="navLinkText">Home</span></a>
                 <a className="navLink" onClick={props.handleNavLinkClick.bind(this, 'Projects')}><span className="navLinkSlashes">//</span><span className="navLinkText">Projects</span></a>
                 <a className="navLink" onClick={props.handleNavLinkClick.bind(this, 'About')}><span className="navLinkSlashes">//</span><span className="navLinkText">About</span></a>
                 <a className="navLink" onClick={props.handleNavLinkClick.bind(this, 'Contact')}><span className="navLinkSlashes">//</span><span className="navLinkText">Contact</span></a>

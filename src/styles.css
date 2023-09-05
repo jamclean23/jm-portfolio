@@ -41,15 +41,15 @@ body {
     background-color: var(--main-bg-color);
 }
 
-a {
+a:not(.navLink) {
     color: var(--text-hover-color);
 }
 
-a:visited {
+a:visited:not(.navLink) {
     color: var(--visited-color);
 }
 
-a:active {
+a:active:not(.navLink) {
     color: white;
 }
 
@@ -61,7 +61,7 @@ a:active {
     --text-hover-color: rgb(168, 224, 250);
     --btn-click-color: white;
     --accent-name-color: rgb(168, 224, 250);
-    --visited-color: rgb(188, 122, 243);
+    --visited-color: rgb(199, 150, 238);
 
     /* Fonts */
     --default-font: 'FiraCode';

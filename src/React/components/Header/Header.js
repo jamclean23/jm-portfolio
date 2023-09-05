@@ -257,15 +257,11 @@ function Header () {
 
     function handleNavLinkClick (toElementClass) {
         const element = document.querySelector('.' + toElementClass);
-        const root = document.querySelector(':root');
-        const headerHeight = getComputedStyle(root).getPropertyValue('--header-height').split('px')[0];
-        if (element) {
 
-            window.scroll({
-                top: element.offsetTop,// - headerHeight
-                behavior: "smooth"
-            })
-        }
+        window.scroll({
+            top: element ? element.offsetTop : 0,
+            behavior: "smooth"
+        })
             
     }
     
@@ -273,11 +269,12 @@ function Header () {
     
     return (
         <header className="Header">
-            <button className="jmdev">
+            <button onClick={handleNavLinkClick.bind(this, 'Home')} className="jmdev">
                 jm_dev
                 {spinners}
             </button>
             <nav className="navBar expanded">
+                <a className="navLink" onClick={handleNavLinkClick.bind(this, 'Home')}><span className="navLinkSlashes">//</span><span className="navLinkText">Home</span></a>
                 <a className="navLink" onClick={handleNavLinkClick.bind(this, 'Projects')}><span className="navLinkSlashes">//</span><span className="navLinkText">Projects</span></a>
                 <a className="navLink" onClick={handleNavLinkClick.bind(this, 'About')}><span className="navLinkSlashes">//</span><span className="navLinkText">About</span></a>
                 <a className="navLink" onClick={handleNavLinkClick.bind(this, 'Contact')}><span className="navLinkSlashes">//</span><span className="navLinkText">Contact</span></a>
