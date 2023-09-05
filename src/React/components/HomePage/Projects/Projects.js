@@ -25,6 +25,11 @@ import limeImg1 from '../../../../assets/images/whamazon-lime/limeImg1.png';
 import limeImg2 from '../../../../assets/images/whamazon-lime/limeImg2.png';
 import limeImg3 from '../../../../assets/images/whamazon-lime/limeImg3.png';
 
+import minecraftImg1 from '../../../../assets/images/minecraft-mod-installer/minecraftImg1.png';
+import minecraftImg2 from '../../../../assets/images/minecraft-mod-installer/minecraftImg2.png';
+import minecraftImg3 from '../../../../assets/images/minecraft-mod-installer/minecraftImg3.png';
+
+
 
 // ====== COMPONENT ======
 
@@ -94,15 +99,15 @@ function Projects () {
             mode={'desktopImgs'}
             images={[
                 {
-                    src: treeImg1,
+                    src: minecraftImg1,
                     layout: 'desktop'
                 }, 
                 {
-                    src: treeImg2, 
+                    src: minecraftImg2, 
                     layout: 'desktop'
                 },
                 {
-                    src: treeImg3,
+                    src: minecraftImg3,
                     layout: 'desktop'
                 }
             ]}

@@ -374,7 +374,7 @@ function Project (props) {
                 { props.project === 'whamazonLime'
                     ? 
                         <> 
-                            <p>An e-commerce site showcasing products for the tech and gaming inclined. Implements authentication and storing of users' data with Firebase, and uses a custom proxy API to retrieve product information from printify.</p>
+                            <p>An internet store showcasing products for the tech and gaming inclined. Implements authentication and storing of users' data with Firebase, and uses a custom proxy API to retrieve product information from printify.</p>
 
                             <h4>Technologies used in the project:</h4>
                             <ul>
