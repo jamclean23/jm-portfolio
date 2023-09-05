@@ -20,6 +20,12 @@ function Project (props) {
 
     const wasAnimating = useRef(false);
     const [selectedImgIndex, setSelectedImgIndex] = useState(1);
+    const [cursorXStart, setCursorXStart] = useState();
+    const [cursorYStart, setCursorYStart] = useState();
+    const [cursorXEnd, setCursorXEnd] = useState();
+    const [cursorYEnd, setCursorYEnd] = useState();
+
+
 
     // Listeners
 
@@ -32,6 +38,31 @@ function Project (props) {
         // Used for indicators
         updateImgIndex();
     }, []);
+
+    // Mouse/Touch event listeners
+    // CursorX end
+    useEffect(() => {
+        // Threshold in px before a swipe occurs
+        const THRESHOLD_X = 25;
+        const THRESHOLD_Y = 75;
+
+        let direction;
+
+        if (Math.abs(cursorYStart - cursorYEnd) < THRESHOLD_Y) {
+            
+            if (cursorXStart > cursorXEnd + THRESHOLD_X) {
+                direction = 'left';
+                scrollCarouselLeft();
+            } else if (cursorXStart < cursorXEnd - THRESHOLD_X) {
+                direction = 'right';
+                scrollCarouselRight();
+            }
+            
+            if (direction) {
+                console.log('%cSWIPE: '  + direction, 'color:green;font-size:18px;')
+            }
+        }
+    }, [cursorXEnd]);
 
 
     // Function
@@ -105,7 +136,6 @@ function Project (props) {
             
 
             if (direction === 'left') {
-                console.log(displayedImg.indexInArray);
                 scrollCarouselLeft();
 
             } else if (direction === 'right') {
@@ -114,8 +144,6 @@ function Project (props) {
 
             }            
         }
-
-        
     }
 
     function scrollCarouselLeft () {
@@ -260,7 +288,29 @@ function Project (props) {
                 }            
             }
         }
+    }
+
+    function handleMouseDown (event) {
         
+        if (event.type === 'touchstart') {
+            setCursorXStart(event.changedTouches[0].clientX);
+            setCursorYStart(event.changedTouches[0].clientY);
+        } else if (event.type === 'mousedown') {
+            setCursorXStart(event.clientX);
+            setCursorYStart(event.clientY);
+        }
+    }  
+    
+    function handleMouseUp (event) {
+
+        if (event.type === 'touchend') {
+            setCursorXEnd(event.changedTouches[0].clientX);
+            setCursorYEnd(event.changedTouches[0].clientY);
+        } else if (event.type === 'mouseup') {
+            setCursorXEnd(event.clientX);
+            setCursorYEnd(event.clientY);
+
+        }
 
     }
 
@@ -285,20 +335,21 @@ function Project (props) {
                 }
             </h3>
             
-            <div className={"imgsWrapper" + (props.mode === 'desktopImgs' ? " desktopImgs" : '')}>
+            <div onMouseDown={handleMouseDown} onTouchStart={handleMouseDown} onMouseUp={handleMouseUp} onTouchEnd={handleMouseUp} className={"imgsWrapper" + (props.mode === 'desktopImgs' ? " desktopImgs" : '')}>
                     <div className={"imgWrapper leftImgWrapper center " + props.images[0].layout}>
-                        <img src={props.images[0].src} alt='Image of application' className="leftImg"/>
+                        <img draggable='false' src={props.images[0].src} alt='Image of application' className="leftImg"/>
                     </div>
 
                     <div className={"imgWrapper centerImgWrapper right " + props.images[0].layout}>
-                        <img src={props.images[1].src} alt='Image of application' className="centerImg"/>
+                        <img draggable='false' src={props.images[1].src} alt='Image of application' className="centerImg"/>
                     </div>
 
                     <div className={"imgWrapper rightImgWrapper left "  + props.images[0].layout}>
-                        <img src={props.images[2].src} alt='Image of application' className="rightImg"/>
+                        <img draggable='false' src={props.images[2].src} alt='Image of application' className="rightImg"/>
                     </div>
-                    <button onClick={handleBtnClick.bind(this, 'left')} className="leftBtn">&lt;</button>
-                    <button onClick={handleBtnClick.bind(this, 'right')} className="rightBtn">&gt;</button>
+                    {/* Buttons to scroll through images */}
+                    {/* <button onClick={handleBtnClick.bind(this, 'left')} className="leftBtn">&lt;</button> */}
+                    {/* <button onClick={handleBtnClick.bind(this, 'right')} className="rightBtn">&gt;</button> */}
             </div>
 
             <div className="indicatorWrapper">

@@ -74,11 +74,11 @@
         transform: translate(-50%, -50%);
         pointer-events: none;
         left: 50%;
-        transition: left 1s, opacity 2s;
+        transition: left .7s, opacity .7s;
     }
 
     .Project .imgWrapper img {
-        transition: transform 2s;
+        transition: transform .7s;
     }
 
     .Project .imgWrapper.left {
