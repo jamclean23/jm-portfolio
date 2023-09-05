@@ -329,7 +329,7 @@ function Project (props) {
                             case 'whamazonLime':
                                 return 'E-commerce Site';
                             case 'minecraftModInstaller':
-                                return 'Windows Mod Installer';
+                                return 'Windows Application';
                         }
                     })()
                 }
@@ -384,6 +384,7 @@ function Project (props) {
                 { props.project === 'idThatTree'
                     ? 
                         <> 
+                            <h4>ID That Tree</h4>
                             <p>A single page web app for learning the trees of North Carolina. Swipe to make selections, and then review your score after the quiz.</p>
 
                             <h4>Technologies used in this project:</h4>
@@ -396,6 +397,12 @@ function Project (props) {
                                 <li>Github / Github Pages</li>
 
                             </ul>
+                            <h4>Links: </h4>
+
+                            <ul>
+                                <li><a href="https://jamclean23.github.io/memory-card/">ID That Tree</a></li>
+                                <li><a href='https://github.com/jamclean23/memory-card'>Github repository</a></li>    
+                            </ul>
                         </>
                     : null
                 }
@@ -404,6 +411,7 @@ function Project (props) {
                 { props.project === 'wheresWaldo'
                     ? 
                         <> 
+                            <h4>Where's Waldo</h4>
                             <p>Find Waldo as fast as you can with this single page web app. Review your results and record them to the leaderboard.</p>
 
                             <h4>Technologies used in this project:</h4>
@@ -417,6 +425,12 @@ function Project (props) {
                                 <li>Google Firebase / Firestore</li>
 
                             </ul>
+
+                            <h4>Links: </h4>
+                            <ul>
+                                <li><a href="https://jamclean23.github.io/photo-tagging-app/">Where's Waldo</a></li>
+                                <li><a href='https://github.com/jamclean23/photo-tagging-app'>Github repository</a></li>    
+                            </ul>
                         </>
                     : null
                 }
@@ -425,6 +439,7 @@ function Project (props) {
                 { props.project === 'whamazonLime'
                     ? 
                         <> 
+                            <h4>Whamazon Lime</h4>
                             <p>An internet store showcasing products for the tech and gaming inclined. Implements authentication and storing of users' data with Firebase, and uses a custom proxy API to retrieve product information from printify.</p>
 
                             <h4>Technologies used in the project:</h4>
@@ -442,6 +457,12 @@ function Project (props) {
                                 <li>Printify API</li>
 
                             </ul>
+
+                            <h4>Links: </h4>
+                            <ul>
+                                <li><a href="https://jamclean23.github.io/js-final-project/">Whamazon Lime</a></li>
+                                <li><a href='https://github.com/jamclean23/js-final-project'>Github repository</a></li>    
+                            </ul>
                         </>
                     : null
                 }  
@@ -450,6 +471,7 @@ function Project (props) {
                 { props.project === 'minecraftModInstaller'
                     ? 
                         <> 
+                            <h4>Minecraft Mod Installer</h4>
                             <p>A Windows application for installing a custom Minecraft modpack, textures, and shaders. Users are guided through the process of finding the correct install locations, and given choices as to what will be installed.</p>
 
                             <h4>Technologies used in the project:</h4>
@@ -462,6 +484,10 @@ function Project (props) {
                                 <li>Node.js</li>
                                 <li>Electron JS</li>
 
+                            </ul>
+                            <h4>Links: </h4>
+                            <ul>
+                                <li><a href='https://github.com/jamclean23/minecraft-modlist-installer'>Github repository</a></li>    
                             </ul>
                         </>
                     : null
