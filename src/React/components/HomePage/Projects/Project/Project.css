@@ -20,6 +20,10 @@
     overflow: hidden;
 }
 
+.Project .imgWrapper {
+    transition: transform 1s;
+}
+
 .Project .imgWrapper.mobile {
     color: black;
     flex-shrink: 0;
