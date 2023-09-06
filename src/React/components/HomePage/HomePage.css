@@ -2,6 +2,7 @@
 
 .HomePage {
     margin-top: var(--header-height);
+    padding-bottom: 2rem;
 }
 
 .HomePage h2 {

@@ -1,1 +1,47 @@
 /* Stylesheet for contact section */
+
+.Contact textarea {
+    resize: none;
+}
+
+.Contact form {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.Contact .inputWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: .5rem;
+}
+
+.Contact input {
+    min-width: min(20%, 20rem);
+    text-align: center;
+}
+
+.Contact textarea {
+    min-width: min(40%, 40rem);
+    min-height: 10rem;
+}
+
+.Contact :is(input, textarea) {
+    border-radius: 4px;
+    padding: .25rem .5rem;
+
+}
+
+.Contact .btnWrapper {
+    display: flex;
+    justify-content: center;
+}
+
+.Contact .description {
+    text-align: center;
+    margin: 3rem 0;
+}
+.Contact .accent {
+    color: var(--accent-name-color);
+}

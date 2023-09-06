@@ -4,6 +4,10 @@
     position: relative;
 }
 
+section {
+    min-height: calc(100vh - var(--header-height));
+}
+
 p {
     margin: 0;
 }

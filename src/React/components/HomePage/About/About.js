@@ -49,7 +49,6 @@ function About () {
         // Convert to ratio and invert
         offset = 1 - (offset / THRESHOLD);
 
-        console.log(offset);
 
         imgs.forEach((img) => {
             img.style.opacity = offset;
