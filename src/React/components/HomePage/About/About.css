@@ -22,6 +22,8 @@
     object-fit: contain;
     border-radius: 4px;
     box-shadow: 0 0 4px var(--header-color);
+    opacity: 0;
+    transition: opacity 1s ease-out;
 }
 
 .About .imgWrapper.left {

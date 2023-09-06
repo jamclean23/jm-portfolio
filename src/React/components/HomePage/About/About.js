@@ -4,7 +4,7 @@
 // ====== IMPORTS ======
 
 // React
-import React from "react";
+import React, { useEffect } from "react";
 
 // Css
 import './About.css';
@@ -17,7 +17,44 @@ import recPic from '../../../../assets/images/mountains.jpg';
 // ====== COMPONENT ======
 
 function About () {
+    // Listeners
 
+    // On mount
+    useEffect(() => {
+        window.addEventListener('scroll', handleScroll);
+    }, []);
+
+    // Functions
+
+    function handleScroll (event) {
+        animateImgsOpacity();
+    }   
+
+    function animateImgsOpacity () {
+
+        const AboutDom = document.querySelector('.About');
+        const imgs = document.querySelectorAll('.About img');
+        const THRESHOLD = 300;
+        let offset = AboutDom.offsetTop - window.scrollY;
+
+        // Clamp to range
+        if (offset < 0) {
+            offset = 0;
+        }
+
+        if (offset > THRESHOLD) {
+            offset = THRESHOLD;
+        }
+
+        // Convert to ratio and invert
+        offset = 1 - (offset / THRESHOLD);
+
+        console.log(offset);
+
+        imgs.forEach((img) => {
+            img.style.opacity = offset;
+        });
+    }
 
     // RENDER
 
