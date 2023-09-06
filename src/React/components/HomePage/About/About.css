@@ -1,0 +1,65 @@
+/* Stylesheet for About.js */
+
+.About {
+    min-height: calc(100vh - var(--header-height));
+}
+
+.About .contentWrapper {
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem;
+    padding: 6rem 2rem;
+}
+
+.About .imgWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.About img {
+    max-width: 15rem;
+    object-fit: contain;
+    border-radius: 4px;
+    box-shadow: 0 0 4px var(--header-color);
+}
+
+.About .imgWrapper.left {
+    align-items: center;
+}
+
+.About .imgWrapper.right {
+    align-items: center;
+}
+
+.About .text {
+    padding-inline: 4rem;
+}
+
+.About .text :first-child {
+    text-align: center;
+}
+
+.About .text .accent {
+    color: var(--accent-name-color);
+}
+
+@media (max-width: 950px) {
+    .About .contentWrapper {
+        display: grid;
+        grid-template-areas: 
+        "text text"
+        ;
+    }
+
+    .About .text {
+        grid-area: text;
+        padding-inline: 0;
+    }
+}
+
+@media (min-width: 2550px) {
+    .About img {
+        min-width: 20vh;
+    }
+}

@@ -275,8 +275,8 @@ function Header () {
             </button>
             <nav className="navBar expanded">
                 <a className="navLink" onClick={handleNavLinkClick.bind(this, 'Home')}><span className="navLinkSlashes">//</span><span className="navLinkText">Home</span></a>
-                <a className="navLink" onClick={handleNavLinkClick.bind(this, 'Projects')}><span className="navLinkSlashes">//</span><span className="navLinkText">Projects</span></a>
                 <a className="navLink" onClick={handleNavLinkClick.bind(this, 'About')}><span className="navLinkSlashes">//</span><span className="navLinkText">About</span></a>
+                <a className="navLink" onClick={handleNavLinkClick.bind(this, 'Projects')}><span className="navLinkSlashes">//</span><span className="navLinkText">Projects</span></a>
                 <a className="navLink" onClick={handleNavLinkClick.bind(this, 'Contact')}><span className="navLinkSlashes">//</span><span className="navLinkText">Contact</span></a>
                 <a className="navLink" onClick={handleNavLinkClick.bind(this, 'Resume')}><span className="navLinkSlashes">//</span><span className="navLinkText">Resumé</span></a>
             </nav>

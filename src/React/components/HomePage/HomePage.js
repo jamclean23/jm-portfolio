@@ -12,6 +12,7 @@ import './HomePage.css';
 import Header from '../Header/Header';
 import Landing from './Landing/Landing.js';
 import Projects from './Projects/Projects.js';
+import About from './About/About';
 
 // Images
 import portrait from '../../../assets/images/portrait.jpg';
@@ -41,6 +42,7 @@ function HomePage () {
         <Header />
         <main>
             <Landing />
+            <About />
             <Projects />
             {/* <button onLoad={updateTest} >{test}</button> */}
         </main>

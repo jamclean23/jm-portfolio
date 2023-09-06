@@ -11,6 +11,11 @@ p {
 h2 {
     font-size: 2rem;
     font-weight: 500;
+    box-shadow: 0 1px 4px var(--header-color);
+    margin-top: 0;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    margin-bottom: 2rem;
 }
 
 h3 {
