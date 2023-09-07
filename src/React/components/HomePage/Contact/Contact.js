@@ -3,15 +3,33 @@
 // ====== IMPORTS ======
 
 // React
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 // Css
 import './Contact.css';
+
+// Google Recaptcha
+import ReCAPTCHA from "react-google-recaptcha";
+import { siteKey } from "../../../../keys/recaptchaKeys.js";
 
 
 // ====== COMPONENT ======
 
 function Contact () {
+
+    // VARIABLES
+
+    const [recaptchaValid, setRecapatchaValid] = useState(false);
+    const [nameValidityMsg, setNameValidityMsg] = useState('');
+    const [emailValidityMsg, setEmailValidityMsg] = useState('');
+    const [messageValidityMsg, setMessageValidityMsg] = useState('');
+
+
+    // LISTENERS 
+
+    useEffect(() => {
+        // console.log(nameValidityMsg);
+    }, [nameValidityMsg]);
 
     // FUNCTIONS
 
@@ -23,8 +41,72 @@ function Contact () {
         const email = document.querySelector('.Contact #email').value;
         const message = document.querySelector('.Contact #message').value;
 
-        console.log(message);
+        if (recaptchaValid && validateForm(name, email, message)) {
+            submit(name, email, message);
+        }
+
+        // TEST
+        console.log('TEST');
+        validateForm(name, email, message);
     }
+
+    function validateForm (name, email, message) {
+
+        let nameValid = validateName(name);
+        let emailValid = validateEmail(email);
+        let messageValid = validateMessage(message);
+        
+        if (nameValid && emailValid && messageValid) {
+            console.log('VALID FORM');
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    function validateName (name) {
+        if (!name) {
+            setNameValidityMsg('Please provide a name');
+            return false;
+        } else {
+            setNameValidityMsg('');
+            return true;
+        }
+    }
+
+    function validateEmail (email) {
+        if (!email.match(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/)) {
+            setEmailValidityMsg('Please provide a valid email');
+            return false;
+        } else {
+            setEmailValidityMsg('');
+            return true;
+        }
+    }
+
+    function validateMessage (message) {
+        if (!message) {
+            setMessageValidityMsg('Please provide a message');
+            return false;
+        } else {
+            setMessageValidityMsg('');
+            return true;
+        }
+    }   
+
+    function submit (name, email, message) {
+
+        console.log(name, email, message);
+    }
+
+    function handleRecapatcha (value) {
+        if (value) {
+            setRecapatchaValid(true);
+        } else {
+            setRecapatchaValid(false);
+        }
+    }
+
 
     // RENDER
 
@@ -37,17 +119,28 @@ function Contact () {
                 <div className="inputWrapper">
                     <label htmlFor="name">Name</label>
                     <input maxLength={100} id='name' type="text" placeholder="Your name"/>
+                    <span className="validityMsg">{nameValidityMsg}</span>
                 </div>
 
                 <div className="inputWrapper">
                     <label htmlFor="email">Email</label>
                     <input maxLength={100} id='email' type="text" placeholder="example@gmail.com"/>
+                    <span className="validityMsg">{emailValidityMsg}</span>
                 </div>
 
                 <div className="inputWrapper">
                     <label htmlFor='message'>Message</label>
                     <textarea maxLength={5000} id='message'/>
+                    <span className="validityMsg">{messageValidityMsg}</span>
                 </div>
+
+                <div className="recaptchaWrapper">
+                    <ReCAPTCHA
+                        sitekey={siteKey}
+                        onChange={handleRecapatcha}
+                    />
+                </div>
+
                 <div className="btnWrapper">
                     <button onClick={handleSubmitClick}>Submit</button>
                 </div>

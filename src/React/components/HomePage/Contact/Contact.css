@@ -7,7 +7,7 @@
 .Contact form {
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: 1rem;
 }
 
 .Contact .inputWrapper {
@@ -42,6 +42,22 @@
     text-align: center;
     margin: 3rem 0;
 }
+
 .Contact .accent {
     color: var(--accent-name-color);
+}
+
+.Contact .recaptchaWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.Contact .validityMsg {
+    color: var(--invalid-color);
+    font-size: .9rem;
+}
+
+.Contact .validityMsg:empty:before {
+    content: "\200b";
 }
