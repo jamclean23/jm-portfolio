@@ -23,7 +23,7 @@ function Contact () {
     const [nameValidityMsg, setNameValidityMsg] = useState('');
     const [emailValidityMsg, setEmailValidityMsg] = useState('');
     const [messageValidityMsg, setMessageValidityMsg] = useState('');
-
+    const [submitDisabled, setSubmitDisabled] = useState(false);
 
     // LISTENERS 
 
@@ -48,6 +48,7 @@ function Contact () {
         // TEST
         console.log('TEST');
         validateForm(name, email, message);
+        submit(name, email, message);
     }
 
     function validateForm (name, email, message) {
@@ -94,9 +95,25 @@ function Contact () {
         }
     }   
 
-    function submit (name, email, message) {
+    async function submit (name, email, message) {
+        setSubmitDisabled(true);
 
-        console.log(name, email, message);
+        let results = await postMessage();
+
+        if (results) {
+            console.log('Sent.');
+        } else {
+            console.log('Not sent');
+        }
+
+        setSubmitDisabled(false);
+    }
+
+    function postMessage (name, email, message) {
+        return new Promise((resolve, reject) => {
+            console.log
+            setTimeout(resolve.bind(this, true), 3000);
+        });
     }
 
     function handleRecapatcha (value) {
@@ -142,7 +159,7 @@ function Contact () {
                 </div>
 
                 <div className="btnWrapper">
-                    <button onClick={handleSubmitClick}>Submit</button>
+                    <button disabled={submitDisabled} onClick={handleSubmitClick}>Submit</button>
                 </div>
             </form>
         </section>
