@@ -24,12 +24,9 @@ function Contact () {
     const [emailValidityMsg, setEmailValidityMsg] = useState('');
     const [messageValidityMsg, setMessageValidityMsg] = useState('');
     const [submitDisabled, setSubmitDisabled] = useState(false);
+    const [sentStatusMsg, setSentStatusMsg] = useState('');
 
     // LISTENERS 
-
-    useEffect(() => {
-        // console.log(nameValidityMsg);
-    }, [nameValidityMsg]);
 
     // FUNCTIONS
 
@@ -96,23 +93,55 @@ function Contact () {
     }   
 
     async function submit (name, email, message) {
+        const sentMsgSpan = document.querySelector('.Contact .sentMsg');
+
         setSubmitDisabled(true);
 
-        let results = await postMessage();
+        let results;
+        try {
+            results = await postMessage(name, email, message);
+        } catch (error) {
+            sentMsgSpan.classList.remove('valid');
+            setSentStatusMsg('Sorry, message not sent, try again later.');
+            console.log(error);
+        }
 
         if (results) {
-            console.log('Sent.');
-        } else {
-            console.log('Not sent');
+            sentMsgSpan.classList.add('valid');
+            setSentStatusMsg('Message sent');
+            console.log(results);
         }
 
         setSubmitDisabled(false);
     }
 
     function postMessage (name, email, message) {
-        return new Promise((resolve, reject) => {
-            console.log
-            setTimeout(resolve.bind(this, true), 3000);
+        return new Promise( async (resolve, reject) => {
+            const controller = new AbortController();
+            let signal = controller.signal;
+            setTimeout(() => controller.abort(), 5000);
+
+            let results;
+            try {
+                results = await fetch('https://server0424.lol/send-email', {
+                    method: "POST",
+                    mode: "cors",
+                    signal,
+                    headers: {
+                        'name': name,
+                        'email': email,
+                        'message': message
+                    }
+                });
+            } catch (error) {
+            }
+
+            if (results) {
+                results = await results.json();
+                resolve(results.body);
+            } else {
+                reject('Timeout');
+            }
         });
     }
 
@@ -159,6 +188,7 @@ function Contact () {
                 </div>
 
                 <div className="btnWrapper">
+                    <span className="validityMsg sentMsg">{sentStatusMsg}</span>
                     <button disabled={submitDisabled} onClick={handleSubmitClick}>Submit</button>
                 </div>
             </form>

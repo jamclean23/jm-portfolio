@@ -72,6 +72,7 @@ a:active:not(.navLink) {
     --accent-name-color: rgb(168, 224, 250);
     --visited-color: rgb(199, 150, 238);
     --invalid-color: rgb(255, 85, 85);
+    --valid-color: rgb(0, 173, 0);
 
     /* Fonts */
     --default-font: 'FiraCode';
