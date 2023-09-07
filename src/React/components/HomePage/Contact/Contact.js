@@ -38,14 +38,14 @@ function Contact () {
         const email = document.querySelector('.Contact #email').value;
         const message = document.querySelector('.Contact #message').value;
 
-        if (recaptchaValid && validateForm(name, email, message)) {
+        if (validateForm(name, email, message) && recaptchaValid) {
             submit(name, email, message);
         }
 
         // TEST
-        console.log('TEST');
-        validateForm(name, email, message);
-        submit(name, email, message);
+        // console.log('TEST, COMMENT OUT TO ENABLE CAPTCHA');
+        // validateForm(name, email, message);
+        // submit(name, email, message);
     }
 
     function validateForm (name, email, message) {
@@ -73,7 +73,7 @@ function Contact () {
     }
 
     function validateEmail (email) {
-        if (!email.match(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/)) {
+        if (!email.match(/[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/i)) {
             setEmailValidityMsg('Please provide a valid email');
             return false;
         } else {
@@ -108,7 +108,7 @@ function Contact () {
 
         if (results) {
             sentMsgSpan.classList.add('valid');
-            setSentStatusMsg('Message sent');
+            setSentStatusMsg('Message sent, check your inbox for confirmation.');
             console.log(results);
         }
 
@@ -153,6 +153,20 @@ function Contact () {
         }
     }
 
+    function handleNameInput () {
+        const name = document.querySelector('.Contact #name').value;
+        validateName(name);
+    }
+    
+    function handleEmailInput () {
+        const email = document.querySelector('.Contact #email').value;
+        validateEmail(email);
+    }
+    
+    function handleMessageInput () {
+        const message = document.querySelector('.Contact #message').value;
+        validateMessage(message);
+    }
 
     // RENDER
 
@@ -164,19 +178,19 @@ function Contact () {
 
                 <div className="inputWrapper">
                     <label htmlFor="name">Name</label>
-                    <input maxLength={100} id='name' type="text" placeholder="Your name"/>
+                    <input onInput={handleNameInput} maxLength={100} id='name' type="text" placeholder="Your name"/>
                     <span className="validityMsg">{nameValidityMsg}</span>
                 </div>
 
                 <div className="inputWrapper">
                     <label htmlFor="email">Email</label>
-                    <input maxLength={100} id='email' type="text" placeholder="example@gmail.com"/>
+                    <input onInput={handleEmailInput} maxLength={100} id='email' type="text" placeholder="example@gmail.com"/>
                     <span className="validityMsg">{emailValidityMsg}</span>
                 </div>
 
                 <div className="inputWrapper">
                     <label htmlFor='message'>Message</label>
-                    <textarea maxLength={5000} id='message'/>
+                    <textarea onInput={handleMessageInput} maxLength={5000} id='message'/>
                     <span className="validityMsg">{messageValidityMsg}</span>
                 </div>
 
