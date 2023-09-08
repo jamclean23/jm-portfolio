@@ -34,12 +34,13 @@ function Contact () {
 
     function handleSubmitClick (event) {
         event.preventDefault()
-
+        scrollToBottom();
+        
         // Field values
         const name = document.querySelector('.Contact #name').value;
         const email = document.querySelector('.Contact #email').value;
         const message = document.querySelector('.Contact #message').value;
-
+        
         if (validateForm(name, email, message) && recaptchaValid) {
             resetRecaptcha();
             submit(name, email, message);
@@ -104,6 +105,8 @@ function Contact () {
     }   
 
     async function submit (name, email, message) {
+        scrollToBottom();
+
         const sentMsgSpan = document.querySelector('.Contact .sentMsg');
 
         setSubmitDisabled(true);
@@ -184,6 +187,14 @@ function Contact () {
     function resetRecaptcha () {
         recaptchaRef.reset();
         setRecapatchaValid(false);
+    }
+
+    function scrollToBottom () {
+        console.log('scrolling to bottom');
+        window.scroll({
+            top: document.documentElement.scrollHeight,
+            behavior: "smooth"
+        });
     }
 
     // RENDER
