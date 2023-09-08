@@ -15,6 +15,7 @@
     flex-direction: column;
     align-items: center;
     gap: .5rem;
+    padding-bottom: .5rem;
 }
 
 .Contact input {
@@ -23,7 +24,7 @@
 }
 
 .Contact textarea {
-    min-width: min(40%, 40rem);
+    min-width: min(70%, 30rem);
     min-height: 10rem;
 }
 
@@ -54,11 +55,16 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
+    min-height: 100px;
+    gap: .5rem;
+    padding-bottom: .5rem;
 }
 
 .Contact .validityMsg {
     color: var(--invalid-color);
     font-size: .9rem;
+    text-align: center;
 }
 
 .Contact .validityMsg:empty:before {

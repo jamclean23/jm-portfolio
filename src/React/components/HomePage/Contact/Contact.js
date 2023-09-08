@@ -25,6 +25,8 @@ function Contact () {
     const [messageValidityMsg, setMessageValidityMsg] = useState('');
     const [submitDisabled, setSubmitDisabled] = useState(false);
     const [sentStatusMsg, setSentStatusMsg] = useState('');
+    const [recaptchaValidMsg, setRecaptchaValidMsg] = useState('');
+    const [recaptchaRef, setRecaptchaRef] = useState();
 
     // LISTENERS 
 
@@ -39,6 +41,7 @@ function Contact () {
         const message = document.querySelector('.Contact #message').value;
 
         if (validateForm(name, email, message) && recaptchaValid) {
+            resetRecaptcha();
             submit(name, email, message);
         }
 
@@ -53,12 +56,20 @@ function Contact () {
         let nameValid = validateName(name);
         let emailValid = validateEmail(email);
         let messageValid = validateMessage(message);
+        validateRecapatcha();
         
         if (nameValid && emailValid && messageValid) {
-            console.log('VALID FORM');
             return true;
         } else {
             return false;
+        }
+    }
+
+    function validateRecapatcha () {
+        if (recaptchaValid) {
+            setRecaptchaValidMsg('');
+        } else {
+            setRecaptchaValidMsg('Please complete the capatcha');
         }
     }
 
@@ -148,8 +159,10 @@ function Contact () {
     function handleRecapatcha (value) {
         if (value) {
             setRecapatchaValid(true);
+            setRecaptchaValidMsg('');
         } else {
             setRecapatchaValid(false);
+            setRecaptchaValidMsg('Please complete the capatcha');
         }
     }
 
@@ -166,6 +179,11 @@ function Contact () {
     function handleMessageInput () {
         const message = document.querySelector('.Contact #message').value;
         validateMessage(message);
+    }
+
+    function resetRecaptcha () {
+        recaptchaRef.reset();
+        setRecapatchaValid(false);
     }
 
     // RENDER
@@ -198,12 +216,16 @@ function Contact () {
                     <ReCAPTCHA
                         sitekey={siteKey}
                         onChange={handleRecapatcha}
+                        ref={(event) => {
+                            setRecaptchaRef(event);
+                        }}
                     />
+                    <span className="validityMsg">{recaptchaValidMsg}</span>
                 </div>
 
                 <div className="btnWrapper">
-                    <span className="validityMsg sentMsg">{sentStatusMsg}</span>
                     <button disabled={submitDisabled} onClick={handleSubmitClick}>Submit</button>
+                    <span className="validityMsg sentMsg">{sentStatusMsg}</span>
                 </div>
             </form>
         </section>
