@@ -17,6 +17,7 @@
 
 .Header.hidden {
     background-color: transparent;
+    pointer-events: none;
 }
 
 .Header :not(.jmdev) {
@@ -142,6 +143,7 @@
     animation-duration: .2s;
     animation-fill-mode: forwards;
     animation-iteration-count: 1;
+    pointer-events: auto;
 }
 
 .hamburger.fadeOut {
@@ -183,6 +185,7 @@
 .jmdev {
     font-size: 1.3rem;
     position: relative;
+    pointer-events: auto;
 }
 
 .jmdev .spinner {
