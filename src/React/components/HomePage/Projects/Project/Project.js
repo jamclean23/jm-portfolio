@@ -460,8 +460,8 @@ function Project (props) {
 
                             <h4>Links: </h4>
                             <ul>
-                                <li><a href="https://jamclean23.github.io/js-final-project/">Whamazon Lime</a></li>
-                                <li><a href='https://github.com/jamclean23/js-final-project'>Github repository</a></li>    
+                                <li><a href="https://jamclean23.github.io/web-storefront/">Whamazon Lime</a></li>
+                                <li><a href='https://github.com/jamclean23/web-storefront/'>Github repository</a></li>    
                             </ul>
                         </>
                     : null
