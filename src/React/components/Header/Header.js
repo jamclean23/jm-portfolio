@@ -259,7 +259,7 @@ function Header () {
 
         // Opens resume link at google drive
         if (toElementClass === 'Resume') {
-            window.open('https://drive.google.com/file/d/1hlrhS8-4FgBQ4WYFQd34m5FhRfh12yOL/view?usp=sharing');
+            window.open('https://drive.google.com/file/d/1vn8Us1Jcyhc_2HRrDYFBdwFiBfE5oeqg/view?usp=sharing');
             return;
         }
 
