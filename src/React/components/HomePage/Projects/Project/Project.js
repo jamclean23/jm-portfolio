@@ -384,8 +384,40 @@ function Project (props) {
 
             <div className="descriptionWrapper">
 
+                {/* ====== POINT TRACKER ======*/}
+                { props.project === 'pointTracker'
+                    ? 
+                        <> 
+                            <h4>Point Tracker</h4>
+                            <p>
+                                A mobile application that helps drone surveyors locate and navigate to control points in the field.<br/>
+                            </p>
+
+                            <h4>Technologies used in this project:</h4>
+                            <ul>
+                                <li>React Native</li>
+                                <li>React Native Maps API</li>
+                                <li>Expo Go</li>
+                                <li>Ruby on Rails</li>
+                                <li>Docker</li>
+                                <li>Javascript</li>
+                                <li>Html</li>
+                                <li>Css</li>
+                                <li>Github</li>
+
+                            </ul>
+                            <h4>Links: </h4>
+
+                            <ul>
+                                <li><a href='https://jamclean23.github.io/point-tracker-blog/'>Point Tracker Blog</a></li>
+                                <li><a href='https://github.com/jamclean23/point-tracker-mobile'>Github repository (Mobile Application)</a></li>
+                                <li><a href='https://github.com/jamclean23/point-tracker-server'>Github repository (Server)</a></li>   
+                            </ul>
+                        </>
+                    : null
+                }                    
                 
-                {/* ====== ID THAT TREE ======*/}
+                {/* ====== VIDEO SPLITTER ======*/}
                 { props.project === 'videoSplitter'
                     ? 
                         <> 

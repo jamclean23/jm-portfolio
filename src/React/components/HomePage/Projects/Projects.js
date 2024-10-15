@@ -33,6 +33,10 @@ import vsScreen1 from '../../../../assets/images/video-splitter/screen-1.jpg';
 import vsScreen2 from '../../../../assets/images/video-splitter/screen-2.jpg';
 import vsScreen3 from '../../../../assets/images/video-splitter/screen-3.jpg';
 
+import ptScreen1 from '../../../../assets/images/point-tracker/screen-1.png';
+import ptScreen2 from '../../../../assets/images/point-tracker/screen-2.png';
+import ptScreen3 from '../../../../assets/images/point-tracker/screen-3.png';
+
 
 // ====== COMPONENT ======
 
@@ -41,6 +45,24 @@ function Projects () {
     return (<section className="Projects">
 
         <h2>// Projects</h2>
+
+        <Project 
+            project='pointTracker'
+            images={[
+                {
+                    src: ptScreen1,
+                    layout: 'mobile'
+                },
+                {
+                    src: ptScreen2,
+                    layout: 'mobile'
+                },
+                {
+                    src: ptScreen3,
+                    layout: 'mobile'
+                }
+            ]}
+        />        
 
         <Project 
             project='videoSplitter'
