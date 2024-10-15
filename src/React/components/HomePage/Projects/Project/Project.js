@@ -378,7 +378,43 @@ function Project (props) {
                 </div>
             </div>
             
+            {/* ====== PROJECTS ====== */}
+            
+            
+
             <div className="descriptionWrapper">
+
+                
+                {/* ====== ID THAT TREE ======*/}
+                { props.project === 'videoSplitter'
+                    ? 
+                        <> 
+                            <h4>Video Splitter</h4>
+                            <p>
+                                A simple app for dividing large videos into smaller, more manageable clips. <br/>
+                                It leverages Ffmpeg, providing feedback on progress and speed during processing.
+                            </p>
+
+                            <h4>Technologies used in this project:</h4>
+                            <ul>
+                                <li>Electron</li>
+                                <li>React</li>
+                                <li>Webpack</li>
+                                <li>Javascript</li>
+                                <li>Html</li>
+                                <li>Css</li>
+                                <li>Github / Github Pages</li>
+
+                            </ul>
+                            <h4>Links: </h4>
+
+                            <ul>
+                                <li><a href="https://jamclean23.github.io/video-splitter/">ID That Tree</a></li>
+                                <li><a href='https://github.com/jamclean23/video-splitter'>Github repository</a></li>    
+                            </ul>
+                        </>
+                    : null
+                }
 
                 {/* ====== ID THAT TREE ======*/}
                 { props.project === 'idThatTree'

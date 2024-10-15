@@ -29,6 +29,9 @@ import minecraftImg1 from '../../../../assets/images/minecraft-mod-installer/min
 import minecraftImg2 from '../../../../assets/images/minecraft-mod-installer/minecraftImg2.png';
 import minecraftImg3 from '../../../../assets/images/minecraft-mod-installer/minecraftImg3.png';
 
+import vsScreen1 from '../../../../assets/images/video-splitter/screen-1.jpg';
+import vsScreen2 from '../../../../assets/images/video-splitter/screen-2.jpg';
+import vsScreen3 from '../../../../assets/images/video-splitter/screen-3.jpg';
 
 
 // ====== COMPONENT ======
@@ -38,6 +41,24 @@ function Projects () {
     return (<section className="Projects">
 
         <h2>// Projects</h2>
+
+        <Project 
+            project='videoSplitter'
+            images={[
+                {
+                    src: vsScreen1,
+                    layout: 'desktop'
+                },
+                {
+                    src: vsScreen2,
+                    layout: 'desktop'
+                },
+                {
+                    src: vsScreen3,
+                    layout: 'desktop'
+                }
+            ]}
+        />
 
         <Project 
             project='idThatTree' 
